@@ -1,4 +1,4 @@
-from hpcourse2 import *
+from .hpcourse import *
 
 def get_p():
     return "egzegaz"
