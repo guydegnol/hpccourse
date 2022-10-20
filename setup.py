@@ -5,7 +5,7 @@ setup(
     version='0.0.1',
     author='GUillaume Therin',
     author_email='guillaume@therin.co',
-    py_modules=['nvcc_plugin', 'v2.v2', 'v1.v1', 'common.helper', 'hpcourse'],
+    py_modules=['nvcc_plugin', 'v2.v2', 'v1.v1', 'common.helper', 'hopourse'],
     url='https://github.com/guydegnol/hpcgpu_course',
     license='LICENSE',
     description='to run CUDA C/C++ code',
