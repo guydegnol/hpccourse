@@ -24,4 +24,9 @@ V2 brings support of multiple source and header files.
 ```
 %%cuda_run
 # This line just to bypass an exeption and can contain any text
+
+
+##### Admin
+https://www.geeksforgeeks.org/how-to-run-cuda-c-c-on-jupyter-notebook-in-google-colaboratory/
+
 ```
