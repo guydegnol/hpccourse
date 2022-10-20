@@ -1,3 +1,5 @@
+#include <stdio.h>
+
 int main(void) {    
     double actual_pi = 3.141592653589793238462643;
     int n;
