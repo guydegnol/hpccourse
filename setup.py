@@ -2,10 +2,10 @@ from distutils.core import setup
 
 setup(
     name='hpcgpu',
-    version='0.1.3',
-    author='GUillaume Therin',
+    version='0.1.5',
+    author='Guillaume Therin',
     author_email='guillaume@therin.co',
-    py_modules=['nvcc_plugin', 'v2.v2', 'v1.v1', 'common.helper', 'hpcourse.hpcourse'],
+    py_modules=['nvcc_plugin', 'v2.v2', 'v1.v1', 'common.helper', '__init__'],
     url='https://github.com/guydegnol/hpcgpu_course',
     license='LICENSE',
     description='to run CUDA C/C++ code',
