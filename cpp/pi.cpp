@@ -9,7 +9,7 @@ int main(void) {
     printf("Intervals");
 
     scanf("%d", &n);
-    if (n == 0) break;
+    if (n == 0) return 0;
 
     malloc((void**) &part_sum, n * sizeof(double));
     cudaMalloc((void**) &dev_part_sum, n * sizeof(double));
