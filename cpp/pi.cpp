@@ -1,4 +1,7 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <cuda_runtime_api.h>
+#include <cuda.h>
 
 int main(void) {    
     double actual_pi = 3.141592653589793238462643;
