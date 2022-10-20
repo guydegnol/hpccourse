@@ -82,15 +82,16 @@ int main(void) {
 		pi += sumHost[tid];
 	pi *= step;
 
+    print(pi)
 	end=clock();
 	// Print results
 
-	printf("GPU PI calculated in : %f s.\n",(end-start)/(float)CLOCKS_PER_SEC);
+	printf("GPU PI calculated in : %f s.\n", (end-start)/(float)CLOCKS_PER_SEC);
 
 	#ifdef DP
-	printf("GPU estimated PI = %20.18f [error of %20.18f]\n",pi,pi-PI);
+	printf("GPU estimated PI = %20.18f [error of %20.18f]\n", pi, pi-PI);
 	#else
-	printf("GPU estimated PI = %f [error of %f]\n",pi,pi-PI);
+	printf("GPU estimated PI = %f [error of %f]\n", pi, pi-PI);
 	#endif
 
 	// Cleanup
