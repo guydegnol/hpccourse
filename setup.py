@@ -1,13 +1,14 @@
 from distutils.core import setup
 
 setup(
-    name='NVCCPlugin',
-    version='0.0.2',
-    author='Andrei Nechaev',
-    author_email='lyfaradey@yahoo.com',
-    py_modules=['nvcc_plugin', 'v2.v2', 'v1.v1', 'common.helper'],
-    url='https://github.com/andreinechaev/nvcc4jupyter',
+    name='hpcgpu',
+    version='0.0.1',
+    author='GUillaume Therin',
+    author_email='guillaume@therin.co',
+    py_modules=['nvcc_plugin', 'v2.v2', 'v1.v1', 'common.helper', 'hpcourse'],
+    url='https://github.com/guydegnol/hpcgpu_course',
     license='LICENSE',
-    description='Jupyter notebook plugin to run CUDA C/C++ code',
+    description='to run CUDA C/C++ code',
+    #description='Jupyter notebook plugin to run CUDA C/C++ code',
     # long_description=open('README.md').read(),
 )
