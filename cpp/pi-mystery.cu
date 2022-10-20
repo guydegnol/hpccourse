@@ -65,7 +65,7 @@ int main(void) {
 
 	printf("# of trials per thread = %d, # of blocks = %d, # of threads/block = %d\n",TRIALS_PER_THREAD,NUM_BLOCK,NUM_THREAD);
 
-	Real step = 1.0/NBIN;  // Step size
+	Real step = 1.0/Real(NBIN);  // Step size
 	size_t size = NUM_BLOCK*NUM_THREAD*sizeof(Real);  //Array memory size
 	sumHost = (Real *)malloc(size);  //  Allocate array on host
 
