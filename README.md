@@ -26,7 +26,45 @@ V2 brings support of multiple source and header files.
 # This line just to bypass an exeption and can contain any text
 
 
+```
+
+
 ##### Admin
 https://www.geeksforgeeks.org/how-to-run-cuda-c-c-on-jupyter-notebook-in-google-colaboratory/
 
-```
+### Program
+
+- Program:
+ - 1/5 (2h): Nov-09/13:30
+    - Introduction HPC (45m)
+    - Introduction to git (30m)
+    - Check students configs (45m)
+ - 2/5 (4h): Nov-10/08:30
+    - Course: notebook/pandas/numpy/matplotlib (55m)
+    - Exercice: notebook/pandas/numpy/matplotlib (55m)
+    - Improve: code efficiency (55m)
+    - Course: basic C/C++  (55m)
+ - 3/5 (4h): Nov-17/08:30
+    - Exercice: basic C/C++ (55m)
+    - Exercice: code efficiency (55m)
+    - Course: multithreading (CPU/GPU) CUDA (55m)
+    - Exercice: multithreading (CPU/GPU) (55m)
+ - 4/5 (4h): Dec-01/08:30
+    - Course: examples of resolutions (55m)
+    - Exercice: multithreading (CPU/GPU) (55m)
+    - Course: Same problem with noisy data (15m)
+    - Exercice: multithreading (CPU/GPU) (55m)
+    - Open questions: (55m)
+ - 5/5 (4h): Dec-07/13:30
+    - Course: examples of resolutions (15m)
+    - Exercice: multithreading (CPU/GPU) (1h30)
+    - Course: examples of resolutions (15m)
+    - Exercice: multithreading (CPU/GPU) (1h30)
+    - Open questions: (55m)
+
+#### 2 hours git
+https://www.donnfelker.com/git/
+
+#### 2 hours git
+https://www.donnfelker.com/git/
+
