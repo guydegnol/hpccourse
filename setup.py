@@ -1,13 +1,13 @@
+import os
 from distutils.core import setup
 
 
 def get_version():
-    for filename in [f"{get_parameter()}/{f}" for f in ["__version__.py", "__init__.py"]]:
-        if os.path.exists(filename):
-            for line in read(filename).splitlines():
-                if line.startswith("__version__"):
-                    delim = '"' if '"' in line else "'"
-                    return line.split(delim)[1]
+    if os.path.exists("__init__.py"):
+        for line in read("__init__.py").splitlines():
+            if line.startswith("__version__"):
+                delim = '"' if '"' in line else "'"
+                return line.split(delim)[1]
     raise RuntimeError("Unable to find version string.")
 
 
