@@ -2,7 +2,7 @@ from distutils.core import setup
 
 setup(
     name='hpcgpu',
-    version='0.1.2',
+    version='0.1.3',
     author='GUillaume Therin',
     author_email='guillaume@therin.co',
     py_modules=['nvcc_plugin', 'v2.v2', 'v1.v1', 'common.helper', 'hpcourse.hpcourse'],
