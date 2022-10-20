@@ -82,7 +82,7 @@ int main(void) {
 		pi += sumHost[tid];
 	pi *= step;
 
-    print(pi)
+	printf("PI=%f STEP=%f\n", pi, step);
 	end=clock();
 	// Print results
 
