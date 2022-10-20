@@ -36,7 +36,7 @@ class NVCCPlugin(Magics):
         helper.print_out(output)
         return None
 
-    @cell_magic
+    """@cell_magic
     def cu(self, line, cell):
         try:
             args = self.argparser.parse_args(line.split())
@@ -54,12 +54,12 @@ class NVCCPlugin(Magics):
             except subprocess.CalledProcessError as e:
                 helper.print_out(e.output.decode("utf8"))
                 output = None
-        return output
+        return output"""
 
     @cell_magic
     def compile_and_run(self, line, cell):
         try:
-            args = self.argparser.parse_args(line.split())
+            args = self.argpacurser.parse_args(line.split())
         except SystemExit as e:
             self.argparser.print_help()
             return
