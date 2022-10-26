@@ -2,9 +2,6 @@
 
 This project is an introduction course on HPC
 
-### V2 is available
-
-V2 brings support of multiple source and header files.
 
 ##### Cuda extensions
 
