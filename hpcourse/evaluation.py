@@ -16,7 +16,7 @@ class Evaluation(Magics):
         )
 
     @cell_magic
-    def ipsa_evaluate(self, line, cell):
+    def ipsa_evaluation(self, line, cell):
         if "STUDENT" not in os.environ:
             raise IOError(
                 f"""Register yourself for the evaluation before. Ex:
