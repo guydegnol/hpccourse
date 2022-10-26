@@ -1,5 +1,6 @@
 import argparse
 from google.cloud import firestore
+import os
 
 from IPython.core.magic import Magics, cell_magic, magics_class
 
@@ -16,15 +17,16 @@ class Evaluation(Magics):
 
     @cell_magic
     def evaluate_cell(self, line, cell):
-        print("AAAAAAAAAAAAAA")
-        print(line)
-        print("AAAAAAAAAAAAAA 2")
-        print(cell)
+        if "STUDENT" not in os.environ:
+            raise IOError(
+                f"""Register your self for the evaluation before. Ex:
+    # Guillaume Therin, gtherin, ...
+    hpcourse.ipsa_login("gtherin", IPython.get_ipython())
+    """
+            )
 
-        info = {"egzezehzrh": 0, "egzezehzrh2": "egzeze"}
+        firestore.Client().collection(os.environ["STUDENT"]).document(line).set({"answer": cell})
 
-        # print(f"Add instrument {info['id']} to firebase:{collection} {info}")
-        firestore.Client().collection("Blah").document("Mathias 2").set(info)
-
-        output = "Done"
-        return output
+        output = f'Answer has been submited for {os.environ["STUDENT"]}/{line}. You can resubmit it several times'
+        print(output)
+        return cell

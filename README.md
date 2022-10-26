@@ -13,7 +13,7 @@ hpcourse.load_extra_magics(IPython.get_ipython())
 hpcourse.ipsa_login("login", IPython.get_ipython())
 ```
 
-- Simple Extension: it compiles and exec the code
+- Cuda basic extension: it compiles C/C++ code and exec it
 ```c:
 %%ipsa_nvcudac_and_exec
 #include <iostream>
@@ -24,7 +24,7 @@ int main() {
 }
 ```
 
-- Mark a cell to be treated as cuda cell
+- Cuda most sophisticated method
 > `%%ipsa_nvcudac --name example.cu --compile false`
 >> NOTE: The cell must contain either code or comments to be run successfully. 
 >> It accepts 2 arguments. `-n` | `--name`  - which is the name of either CUDA source or Header
@@ -38,9 +38,6 @@ int main() {
 %%cuda_run
 # This line just to bypass an exeption and can contain any text
 ```
-
-##### Admin
-https://www.geeksforgeeks.org/how-to-run-cuda-c-c-on-jupyter-notebook-in-google-colaboratory/
 
 ### Program
 
