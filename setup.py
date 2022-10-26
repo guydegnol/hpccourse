@@ -48,7 +48,7 @@ setup(
     version=get_version(),
     author="Guillaume Therin",
     author_email="guillaume@therin.co",
-    # packages=find_packages(),
+    packages=find_packages(),
     #py_modules=[
     #    "magic_plugin",
     #    "v2.v2",
