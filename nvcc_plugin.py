@@ -39,7 +39,7 @@ class NVCCPlugin3(Magics):
         return None
 
     @cell_magic
-    def nvcuda_and_exec(self, line, cell):
+    def nvcudac_and_exec(self, line, cell):
         try:
             args = self.argparser.parse_args(line.split())
         except SystemExit as e:
@@ -62,9 +62,6 @@ class NVCCPlugin3(Magics):
 def load_ipython_extension(ip):
     nvcc_plugin = NVCC_V1(ip)
     ip.register_magics(nvcc_plugin)
-
-    nvcc_plugin_v2 = NVCC_V2(ip)
-    ip.register_magics(nvcc_plugin_v2)
 
     nvcc_plugin_v3 = NVCCPlugin3(ip)
     ip.register_magics(nvcc_plugin_v3)
