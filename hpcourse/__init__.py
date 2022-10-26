@@ -29,8 +29,8 @@ def register(student_name=None, ip=None):
 hpcourse.register("gtherin", IPython.get_ipython())
 """
         )
-    os.env["STUDENT"] = student_name
-    os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="hpcgpu_course/hpcourse/ipsastudents.json"
+    os.environ["STUDENT"] = student_name
+    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "hpcgpu_course/hpcourse/ipsastudents.json"
 
     if ip is None:
         raise IOError(
