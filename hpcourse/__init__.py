@@ -1,4 +1,4 @@
-__version__ = "0.1.5"
+__version__ = "1.0.0"
 
 # from .hpcourse import *
 # from .hpcourse3 import *
@@ -10,8 +10,8 @@ def get_p():
     return "egzegaz"
 
 
-def load_ipython_extension(ip):
-    from .magics import NVCCPlugin3
+def load_magic(ip):
+    from .magics import NVCCUDACPlugin
 
-    nvcc_plugin_v3 = NVCCPlugin3(ip)
+    nvcc_plugin_v3 = NVCCUDACPlugin(ip)
     ip.register_magics(nvcc_plugin_v3)

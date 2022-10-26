@@ -34,7 +34,7 @@ class NVCCUDACPlugin(Magics):
         return None
 
     @cell_magic
-    def nvcudac_and_exec2(self, line, cell):
+    def nvcudac_and_exec(self, line, cell):
         try:
             args = self.argparser.parse_args(line.split())
         except SystemExit as e:
