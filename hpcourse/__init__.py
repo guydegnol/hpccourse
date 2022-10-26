@@ -21,7 +21,7 @@ def ipsa_login(student_name=None, ip=None):
 
     if student_name is None:
         raise IOError(
-            f"""Register your self for the course. Ex:
+            f"""Register yourself for the course. Ex:
 # Guillaume Therin, gtherin, ...
 hpcourse.ipsa_login("gtherin", IPython.get_ipython())
 """
@@ -32,7 +32,7 @@ hpcourse.ipsa_login("gtherin", IPython.get_ipython())
 
     if ip is None:
         raise IOError(
-            f"""Register your self for the course using the line:
+            f"""Register yourself for the course using the line:
 hpcourse.register("{student_name}", IPython.get_ipython())
 """
         )

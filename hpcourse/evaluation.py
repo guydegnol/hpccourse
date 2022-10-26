@@ -16,17 +16,17 @@ class Evaluation(Magics):
         )
 
     @cell_magic
-    def evaluate_cell(self, line, cell):
+    def ipsa_evaluate(self, line, cell):
         if "STUDENT" not in os.environ:
             raise IOError(
-                f"""Register your self for the evaluation before. Ex:
+                f"""Register yourself for the evaluation before. Ex:
     # Guillaume Therin, gtherin, ...
     hpcourse.ipsa_login("gtherin", IPython.get_ipython())
     """
             )
 
-        firestore.Client().collection(os.environ["STUDENT"]).document(line).set({"answer": cell})
+        firestore.Client().collection(line).document(os.environ["STUDENT"]).set({"answer": cell})
 
-        output = f'Answer has been submited for {os.environ["STUDENT"]}/{line}. You can resubmit it several times'
+        output = f'Answer has been submited for {line}/{os.environ["STUDENT"]}. You can resubmit it several times'
         print(output)
         return cell
