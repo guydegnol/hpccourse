@@ -40,11 +40,12 @@ def get_console_scripts():
     return scripts
 
 
+print(find_packages())
+
 setup(
     # name=get_parameter(),
     name="hpcgpu",
-    # version=get_version(),
-    version="0.1.5",
+    version=get_version(),
     author="Guillaume Therin",
     author_email="guillaume@therin.co",
     packages=find_packages(),
