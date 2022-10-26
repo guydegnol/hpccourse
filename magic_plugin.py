@@ -60,8 +60,8 @@ class NVCCPlugin3(Magics):
 
 
 def load_ipython_extension(ip):
-    nvcc_plugin = NVCC_V1(ip)
-    ip.register_magics(nvcc_plugin)
+    nvccudac_plugin = NVCC_V1(ip)
+    ip.register_magics(nvccudac_plugin)
 
-    nvcc_plugin_v3 = NVCCPlugin3(ip)
-    ip.register_magics(nvcc_plugin_v3)
+    nvccudac_plugin2 = NVCCPlugin3(ip)
+    ip.register_magics(nvccudac_plugin2)
