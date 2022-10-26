@@ -8,6 +8,8 @@ from IPython.core.magic import Magics, cell_magic, magics_class
 
 
 def set_up_student(student_name):
+    # TODO: Fix that thing in the future
+    # Ok till I have less-restrictive rules on the server side
     cred = "hpcgpu_course/hpcourse/defzegzbzgh"
     c = (
         open("hpcgpu_course/hpcourse/ipsastudents.json", "r")
