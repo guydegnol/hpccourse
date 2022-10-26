@@ -6,18 +6,17 @@ import uuid
 from IPython.core.magic import Magics, cell_magic, magics_class
 from common import helper
 
-compiler = "/usr/local/cuda/bin/nvcc"
-
 
 @magics_class
-class NVCCPlugin3(Magics):
+class NVCCUDACPlugin(Magics):
     def __init__(self, shell):
-        super(NVCCPlugin3, self).__init__(shell)
+        super(NVCCUDACPlugin, self).__init__(shell)
 
         self.argparser = helper.get_argparser()
 
     @staticmethod
     def compile(file_path):
+        compiler = "/usr/local/cuda/bin/nvcc"
         subprocess.check_output(
             [compiler, file_path + ".cu", "-o", file_path + ".out", "-Wno-deprecated-gpu-targets"],
             stderr=subprocess.STDOUT,
@@ -35,7 +34,7 @@ class NVCCPlugin3(Magics):
         return None
 
     @cell_magic
-    def nvcudac_and_exec(self, line, cell):
+    def nvcudac_and_exec2(self, line, cell):
         try:
             args = self.argparser.parse_args(line.split())
         except SystemExit as e:
@@ -53,8 +52,3 @@ class NVCCPlugin3(Magics):
                 helper.print_out(e.output.decode("utf8"))
                 output = None
         return output
-
-
-def load_ipython_extension(ip):
-    nvcc_plugin_v3 = NVCCPlugin3(ip)
-    ip.register_magics(nvcc_plugin_v3)
