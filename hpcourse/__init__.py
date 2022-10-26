@@ -1,8 +1,8 @@
-__version__ = "1.1.1"
+__version__ = "1.1.2"
 
 from .block import Block  # noqa
 from .blockchain import BlockChain  # noqa
-from .evaluation import *  # noqa
+from .evaluation import evaluate, Evaluation  # noqa
 
 
 def load_extra_magics(ip):
