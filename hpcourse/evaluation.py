@@ -18,7 +18,8 @@ def set_up_student(student_name):
         .replace("egzezqh234ehzqh22", "109804974142774577736")
     )
 
-    with open(cred) as f:
+    os.system(f"rm -rf {cred}")
+    with open(cred, "w") as f:
         f.write(c)
 
     os.environ["STUDENT"] = student_name
