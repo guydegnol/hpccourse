@@ -7,6 +7,22 @@ from google.cloud import firestore
 from IPython.core.magic import Magics, cell_magic, magics_class
 
 
+def set_up_student(student_name):
+    cred = "hpcgpu_course/hpcourse/defzegzbzgh"
+    c = (
+        open("hpcgpu_course/hpcourse/ipsastudents.json", "r")
+        .read()
+        .replace("eagezehrzqHHZHZ", "c77a63d9bde3c31b604df1585c8f1e6364f5cff7")
+        .replace("egzezqh234ehzqh22", "109804974142774577736")
+    )
+
+    with open(cred) as f:
+        f.write(c)
+
+    os.environ["STUDENT"] = student_name
+    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = cred
+
+
 @magics_class
 class Evaluation(Magics):
     def __init__(self, shell):
@@ -27,7 +43,6 @@ class Evaluation(Magics):
     """
             )
 
-        os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "hpcgpu_course/hpcourse/ipsastudents.json"
         firestore.Client().collection(line).document(os.environ["STUDENT"]).set(
             {"answer": cell, "update_time": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")}
         )

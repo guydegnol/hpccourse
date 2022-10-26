@@ -1,4 +1,4 @@
-__version__ = "1.2.1"
+__version__ = "1.2.2"
 
 import os
 
@@ -27,6 +27,7 @@ hpcourse.ipsa_login("jdoe", IPython.get_ipython())
 """
         )
     else:
+        set_up_student(student_name)
         os.environ["STUDENT"] = student_name
 
     if ip is None:
