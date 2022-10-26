@@ -70,13 +70,6 @@ https://www.geeksforgeeks.org/how-to-run-cuda-c-c-on-jupyter-notebook-in-google-
     - Exercice: multithreading (CPU/GPU) (1h30)
     - Open questions: (55m)
 
-#### 2 hours git
-https://www.donnfelker.com/git/
-
-#### 2 hours git
-https://www.donnfelker.com/git/
-
-
 # Cours Omar
 https://www.overleaf.com/project/5efda0c4d82afb0001032586
 

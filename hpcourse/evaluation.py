@@ -1,28 +1,7 @@
-import firebase_admin
-from firebase_admin import credentials
-
+import argparse
 from google.cloud import firestore
 
-
-def evaluate(cell):
-
-    # cred = credentials.Certificate(filename)
-    # firebase_admin.initialize_app(cred)
-
-    info = {"egzezehzrh": 0, "egzezehzrh2": "egzeze"}
-
-    # print(f"Add instrument {info['id']} to firebase:{collection} {info}")
-    firestore.Client().collection("Blah").document("Mathias").set(info)
-
-
-import os
-import subprocess
-import tempfile
-import uuid
-import argparse
-
 from IPython.core.magic import Magics, cell_magic, magics_class
-from IPython.core.magic_arguments import argument, magic_arguments, parse_argstring
 
 
 @magics_class
@@ -42,5 +21,10 @@ class Evaluation(Magics):
         print("AAAAAAAAAAAAAA 2")
         print(cell)
 
-        output = None
+        info = {"egzezehzrh": 0, "egzezehzrh2": "egzeze"}
+
+        # print(f"Add instrument {info['id']} to firebase:{collection} {info}")
+        firestore.Client().collection("Blah").document("Mathias 2").set(info)
+
+        output = "Done"
         return output
