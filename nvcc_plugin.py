@@ -41,7 +41,7 @@ class NVCCPlugin3(Magics):
     @cell_magic
     def nvcuda_and_exec(self, line, cell):
         try:
-            args = self.argpacurser.parse_args(line.split())
+            args = self.argparser.parse_args(line.split())
         except SystemExit as e:
             self.argparser.print_help()
             return
