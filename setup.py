@@ -48,7 +48,16 @@ setup(
     version=get_version(),
     author="Guillaume Therin",
     author_email="guillaume@therin.co",
-    packages=find_packages(),
+    # packages=find_packages(),
+    py_modules=[
+        "magic_plugin",
+        "v2.v2",
+        "v1.v1",
+        "common.helper",
+        "hpcourse.hpcourse",
+        "hpcourse.hpcourse3",
+        "hpcourse.magics",
+    ],
     # Dependencies
     install_requires=["pandas"],  # "thop"
     # Script info
