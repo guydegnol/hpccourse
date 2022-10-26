@@ -20,8 +20,8 @@ class Evaluation(Magics):
         if "STUDENT" not in os.environ:
             raise IOError(
                 f"""Register yourself for the evaluation before. Ex:
-    # Guillaume Therin, gtherin, ...
-    hpcourse.ipsa_login("gtherin", IPython.get_ipython())
+    # John Doe, jdoe, ...
+    hpcourse.ipsa_login("jdoe", IPython.get_ipython())
     """
             )
 
