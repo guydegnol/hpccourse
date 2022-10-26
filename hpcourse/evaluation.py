@@ -6,7 +6,7 @@ from google.cloud import firestore
 
 def evaluate(cell):
 
-    cred = credentials.Certificate("ipsa.json")
+    cred = credentials.Certificate("hpcgpu_course/hpcourse/ipsa.json")
     firebase_admin.initialize_app(cred)
 
     info = {"egzezehzrh": 0, "egzezehzrh2": "egzeze"}
