@@ -13,3 +13,4 @@ def load_extra_magics(ip):
 
     nvcc_plugin2 = NVCUDACPluginBis(ip)
     ip.register_magics(nvcc_plugin2)
+    print(f"Load version hpcourse (version={__version__})")
