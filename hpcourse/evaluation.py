@@ -37,12 +37,9 @@ class Evaluation(Magics):
 
     @cell_magic
     def evaluate_cell(self, line, cell):
-        try:
-            args = self.argparser.parse_args(line.split())
-        except SystemExit as e:
-            self.argparser.print_help()
-            return
-
+        print("AAAAAAAAAAAAAA")
+        print(line)
+        print("AAAAAAAAAAAAAA 2")
         print(cell)
 
         output = None
