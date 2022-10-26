@@ -1,4 +1,4 @@
-__version__ = "1.1.6"
+__version__ = "1.2.0"
 
 import os
 
@@ -10,27 +10,25 @@ from .evaluation import Evaluation  # noqa
 def load_extra_magics(ip):
     from .magics import NVCUDACPlugin, NVCUDACPluginBis
 
-    nvcc_plugin1 = NVCUDACPlugin(ip)
-    ip.register_magics(nvcc_plugin1)
-
-    nvcc_plugin2 = NVCUDACPluginBis(ip)
-    ip.register_magics(nvcc_plugin2)
+    ip.register_magics(NVCUDACPlugin(ip))
+    ip.register_magics(NVCUDACPluginBis(ip))
     ip.register_magics(Evaluation(ip))
 
     print(f"Load version hpcourse (version={__version__})")
 
 
-def register(student_name=None, ip=None):
+def ipsa_login(student_name=None, ip=None):
 
     if student_name is None:
         raise IOError(
             f"""Register your self for the course. Ex:
-# Guillaume Therin => gtherin
-hpcourse.register("gtherin", IPython.get_ipython())
+# Guillaume Therin, gtherin, ...
+hpcourse.ipsa_login("gtherin", IPython.get_ipython())
 """
         )
-    os.environ["STUDENT"] = student_name
-    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "hpcgpu_course/hpcourse/ipsastudents.json"
+    else:
+        os.environ["STUDENT"] = student_name
+        os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "hpcgpu_course/hpcourse/ipsastudents.json"
 
     if ip is None:
         raise IOError(

@@ -40,7 +40,7 @@ class NVCUDACPlugin(Magics):
         return None
 
     @cell_magic
-    def nvcudac_and_exec(self, line, cell):
+    def ipsa_nvcudac_and_exec(self, line, cell):
         try:
             args = self.argparser.parse_args(line.split())
         except SystemExit as e:
@@ -109,7 +109,7 @@ class NVCUDACPluginBis(Magics):
     )
     @argument("-c", "--compile", type=bool, help="Should be compiled?")
     @cell_magic
-    def nvcudac(self, line="", cell=None):
+    def ipsa_nvcudac(self, line="", cell=None):
         args = parse_argstring(self.cuda, line)
         ex = args.name.split(".")[-1]
         if ex not in ["cu", "h"]:
@@ -143,7 +143,7 @@ class NVCUDACPluginBis(Magics):
         return output
 
     @cell_magic
-    def cuda_run(self, line="", cell=None):
+    def ipsa_cuda_run(self, line="", cell=None):
         try:
             args = self.argparser.parse_args(line.split())
         except SystemExit:
