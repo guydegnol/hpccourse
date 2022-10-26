@@ -4,7 +4,9 @@ import time
 
 class Block:
     def __init__(self, index, proof_no, prev_hash, data, timestamp=None):
-        # first block class
+        """A block refers to a transaction between 2 people.        
+It is characterised by 
+        """
         self.index = index
         self.proof_no = proof_no
         self.prev_hash = prev_hash

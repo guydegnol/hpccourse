@@ -1,17 +1,33 @@
 import hashlib
 import time
 import random
+import pandas as pd
 
 from .block import Block
 
 
+# Display the BlockChain code on the side
+# hpcourse.BlockChain??
+
+import hashlib
+import time
+import random
+
+random.seed(42)
+
+
 class BlockChain:
-    def __init__(self):
+    def __init__(self, reward_probability=0.1, miners_flops={"Aegon": 1.0}):
         # constructor method
         self.chain = []
         self.current_data = []
         self.nodes = set()
+        self.lottery_range = int(1.0 / reward_probability)
+        self.miners_flops = miners_flops
         self.construct_genesis()
+        self.portfolios = {}
+        self.start = time.time()
+        self.transactions = []
 
     def construct_genesis(self):
         # constructs the initial block
@@ -19,7 +35,7 @@ class BlockChain:
 
     def construct_block(self, proof_no, prev_hash):
         # constructs a new block and adds it to the chain
-        block = Block(index=len(self.chain), proof_no=proof_no, prev_hash=prev_hash, data=self.current_data)
+        block = hpcourse.Block(index=len(self.chain), proof_no=proof_no, prev_hash=prev_hash, data=self.current_data)
         self.current_data = []
 
         self.chain.append(block)
@@ -45,7 +61,21 @@ class BlockChain:
     def new_data(self, sender, recipient, quantity):
         # adds a new transaction to the data of the transactions
         self.current_data.append({"sender": sender, "recipient": recipient, "quantity": quantity})
+        if sender not in self.portfolios:
+            self.portfolios[sender] = 0
+        if recipient not in self.portfolios:
+            self.portfolios[recipient] = 0
+        self.portfolios[sender] = -quantity
+        self.portfolios[recipient] = quantity
+        # print(f"{sender}-={quantity}, {recipient}+={quantity},  exec={time.time()-self.start}")
+
+        self.transactions.append([sender, recipient, quantity, time.time() - self.start])
+        self.start = time.time()
+
         return True
+
+    def get_transactions(self):
+        return pd.DataFrame(self.transactions, columns=["sender", "recipient", "quantity", "etime"])
 
     @staticmethod
     def proof_of_work(last_proof):
@@ -71,13 +101,33 @@ class BlockChain:
     def latest_block(self):
         return self.chain[-1]
 
-    def block_mining(self, details_miner):
+    def update_miners_flops(self, miners_flops):
+        self.miners_flops = miners_flops
 
-        self.new_data(
-            sender="0",  # it implies that this node has created a new block
-            recipient=details_miner,
-            quantity=1,  # creating a new block (or identifying the proof number) is awarded with 1
+    def construct_consolidated_block(self, sender, recipient, quantity, miner=None, reward_probability=None):
+        self.start = time.time()
+        self.new_data(sender=sender, recipient=recipient, quantity=quantity)
+        last_block = self.latest_block
+        last_proof_no = last_block.proof_no
+        self.construct_block(last_proof_no, last_block.calculate_hash)
+
+        lottery_range = int(1.0 / reward_probability) if reward_probability is not None else self.lottery_range
+        if random.randint(0, lottery_range) != 1:
+            return
+
+        recipient = (
+            miner
+            if miner is not None
+            else random.choices(list(self.miners_flops.keys()), weights=self.miners_flops.values(), k=1)[0]
         )
+        self.block_mining(miner=miner, reward_probability=reward_probability)
+        last_block = self.latest_block
+        last_proof_no = last_block.proof_no
+        self.construct_block(last_proof_no, last_block.calculate_hash)
+
+    def block_mining(self, miner=None, reward_probability=None):
+
+        self.new_data(sender="MINER_REWARD_!!!!!", recipient=miner, quantity=1)
 
         last_block = self.latest_block
 
@@ -85,6 +135,7 @@ class BlockChain:
         proof_no = self.proof_of_work(last_proof_no)
 
         last_hash = last_block.calculate_hash
+
         block = self.construct_block(proof_no, last_hash)
 
         return vars(block)
