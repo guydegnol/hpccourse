@@ -6,13 +6,12 @@ import uuid
 from IPython.core.magic import Magics, cell_magic, magics_class
 from common import helper
 
-compiler = '/usr/local/cuda/bin/nvcc'
-ext = '.cu'
+compiler = "/usr/local/cuda/bin/nvcc"
+ext = ".cu"
 
 
 @magics_class
 class NVCCPlugin(Magics):
-
     def __init__(self, shell):
         super(NVCCPlugin, self).__init__(shell)
 
@@ -21,18 +20,18 @@ class NVCCPlugin(Magics):
     @staticmethod
     def compile(file_path):
         subprocess.check_output(
-            [compiler, file_path + ext, "-o", file_path + ".out", '-Wno-deprecated-gpu-targets'], stderr=subprocess.STDOUT)
+            [compiler, file_path + ext, "-o", file_path + ".out", "-Wno-deprecated-gpu-targets"],
+            stderr=subprocess.STDOUT,
+        )
 
     def run(self, file_path, timeit=False):
         if timeit:
             stmt = f"subprocess.check_output(['{file_path}.out'], stderr=subprocess.STDOUT)"
-            output = self.shell.run_cell_magic(
-                magic_name="timeit", line="-q -o import subprocess", cell=stmt)
+            output = self.shell.run_cell_magic(magic_name="timeit", line="-q -o import subprocess", cell=stmt)
         else:
-            output = subprocess.check_output(
-                [file_path + ".out"], stderr=subprocess.STDOUT)
-            output = output.decode('utf8')
-            
+            output = subprocess.check_output([file_path + ".out"], stderr=subprocess.STDOUT)
+            output = output.decode("utf8")
+
         helper.print_out(output)
         return None
 
