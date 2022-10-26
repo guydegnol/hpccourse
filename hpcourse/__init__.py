@@ -1,4 +1,4 @@
-__version__ = "1.1.2"
+__version__ = "1.1.3"
 
 from .block import Block  # noqa
 from .blockchain import BlockChain  # noqa
