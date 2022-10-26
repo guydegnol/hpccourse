@@ -1,11 +1,8 @@
-__version__ = "1.0.1"
+__version__ = "1.1.0"
 
-from .block import Block
-from .blockchain import BlockChain
-
-
-def get_p():
-    return "egzegaz"
+from .block import Block  # noqa
+from .blockchain import BlockChain  # noqa
+from .evaluation import *  # noqa
 
 
 def load_extra_magics(ip):
