@@ -1,10 +1,8 @@
-__version__ = "1.2.2"
-
-import os
+__version__ = "1.2.3"
 
 from .block import Block  # noqa
 from .blockchain import BlockChain  # noqa
-from .evaluation import Evaluation  # noqa
+from .evaluation import Evaluation, set_up_student  # noqa
 
 
 def load_extra_magics(ip):
@@ -28,7 +26,6 @@ hpcourse.ipsa_login("jdoe", IPython.get_ipython())
         )
     else:
         set_up_student(student_name)
-        os.environ["STUDENT"] = student_name
 
     if ip is None:
         raise IOError(
