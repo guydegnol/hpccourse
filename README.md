@@ -9,16 +9,20 @@ V2 brings support of multiple source and header files.
 ##### Cuda extensions
 
 - Load Extension
-```python
+```python:
 import IPython
 hpcourse.load_extra_magics(IPython.get_ipython())
 ```
 
 - Simple Extension: it compiles and exec the code
-```c
+```c:
 %%nvcudac_and_exec
-import IPython
-hpcourse.load_extra_magics(IPython.get_ipython())
+#include <iostream>
+int main() {
+    for (int i = 0; i <= 10; ++i) {
+        std::cout << i << std::endl;
+    }
+}
 ```
 
 - Mark a cell to be treated as cuda cell
@@ -34,22 +38,7 @@ hpcourse.load_extra_magics(IPython.get_ipython())
 ```python
 %%cuda_run
 # This line just to bypass an exeption and can contain any text
-
-
-%%nvcudac_and_exec
-
 ```
-
-- To compile and run all CUDA files you need to run
-```python
-%%cuda_run
-# This line just to bypass an exeption and can contain any text
-
-
-%%nvcudac_and_exec
-
-```
-
 
 ##### Admin
 https://www.geeksforgeeks.org/how-to-run-cuda-c-c-on-jupyter-notebook-in-google-colaboratory/
