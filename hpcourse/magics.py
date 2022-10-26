@@ -2,9 +2,9 @@ import os
 import subprocess
 import tempfile
 import uuid
+import argparse
 
 from IPython.core.magic import Magics, cell_magic, magics_class
-from common import helper
 
 
 @magics_class
@@ -12,7 +12,10 @@ class NVCCUDACPlugin(Magics):
     def __init__(self, shell):
         super(NVCCUDACPlugin, self).__init__(shell)
 
-        self.argparser = helper.get_argparser()
+        self.parser = argparse.ArgumentParser(description="NVCCUDACPlugin params")
+        self.parser.add_argument(
+            "-t", "--timeit", action="store_true", help="flag to return timeit result instead of stdout"
+        )
 
     @staticmethod
     def compile(file_path):
@@ -30,7 +33,9 @@ class NVCCUDACPlugin(Magics):
             output = subprocess.check_output([file_path + ".out"], stderr=subprocess.STDOUT)
             output = output.decode("utf8")
 
-        helper.print_out(output)
+        for l in output.split("\n"):
+            print(l)
+
         return None
 
     @cell_magic
@@ -49,6 +54,7 @@ class NVCCUDACPlugin(Magics):
                 self.compile(file_path)
                 output = self.run(file_path, timeit=args.timeit)
             except subprocess.CalledProcessError as e:
-                helper.print_out(e.output.decode("utf8"))
+                for l in e.output.decode("utf8").split("\n"):
+                    print(l)
                 output = None
         return output
