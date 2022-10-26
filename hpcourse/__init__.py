@@ -28,7 +28,6 @@ hpcourse.ipsa_login("jdoe", IPython.get_ipython())
         )
     else:
         os.environ["STUDENT"] = student_name
-        os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "hpcgpu_course/hpcourse/ipsastudents.json"
 
     if ip is None:
         raise IOError(

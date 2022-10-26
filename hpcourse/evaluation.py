@@ -1,6 +1,8 @@
 import argparse
-from google.cloud import firestore
+import datetime
 import os
+
+from google.cloud import firestore
 
 from IPython.core.magic import Magics, cell_magic, magics_class
 
@@ -25,8 +27,11 @@ class Evaluation(Magics):
     """
             )
 
-        firestore.Client().collection(line).document(os.environ["STUDENT"]).set({"answer": cell})
+        os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "hpcgpu_course/hpcourse/ipsastudents.json"
+        firestore.Client().collection(line).document(os.environ["STUDENT"]).set(
+            {"answer": cell, "update_time": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")}
+        )
 
         output = f'Answer has been submited for {line}/{os.environ["STUDENT"]}. You can resubmit it several times'
         print(output)
-        return cell
+        return None
