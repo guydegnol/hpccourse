@@ -1,4 +1,6 @@
-__version__ = "1.1.5"
+__version__ = "1.1.6"
+
+import os
 
 from .block import Block  # noqa
 from .blockchain import BlockChain  # noqa
@@ -27,6 +29,7 @@ def register(student_name=None, ip=None):
 hpcourse.register("gtherin", IPython.get_ipython())
 """
         )
+    os.env["STUDENT"] = student_name
 
     if ip is None:
         raise IOError(
