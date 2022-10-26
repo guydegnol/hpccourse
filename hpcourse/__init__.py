@@ -15,3 +15,6 @@ def load_extra_magics(ip):
 
     nvcc_plugin_v3 = NVCCUDACPlugin(ip)
     ip.register_magics(nvcc_plugin_v3)
+
+    nvccudac_plugin2 = NVCCPlugin3(ip)
+    ip.register_magics(nvccudac_plugin2)

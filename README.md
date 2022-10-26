@@ -6,13 +6,23 @@ This project is an introduction course on HPC
 
 V2 brings support of multiple source and header files.
 
-##### Usage
+##### Cuda extensions
 
 - Load Extension
-> `%load_ext nvcc_plugin`
+```python
+import IPython
+hpcourse.load_extra_magics(IPython.get_ipython())
+```
+
+- Simple Extension: it compiles and exec the code
+```c
+%%nvcudac_and_exec
+import IPython
+hpcourse.load_extra_magics(IPython.get_ipython())
+```
 
 - Mark a cell to be treated as cuda cell
-> `%%cuda --name example.cu --compile false`
+> `%%nvcudac --name example.cu --compile false`
 >> NOTE: The cell must contain either code or comments to be run successfully. 
 >> It accepts 2 arguments. `-n` | `--name`  - which is the name of either CUDA source or Header
 >> The name parameter must have extension `.cu` or `.h`
@@ -21,10 +31,22 @@ V2 brings support of multiple source and header files.
 >> the `main` function
 
 - To compile and run all CUDA files you need to run
-```
+```python
 %%cuda_run
 # This line just to bypass an exeption and can contain any text
 
+
+%%nvcudac_and_exec
+
+```
+
+- To compile and run all CUDA files you need to run
+```python
+%%cuda_run
+# This line just to bypass an exeption and can contain any text
+
+
+%%nvcudac_and_exec
 
 ```
 
