@@ -68,3 +68,14 @@ https://www.donnfelker.com/git/
 #### 2 hours git
 https://www.donnfelker.com/git/
 
+
+# Cours Omar
+https://www.overleaf.com/project/5efda0c4d82afb0001032586
+
+
+# Mandelbrot
+python
+https://github.com/harrism/numba_examples
+c/c++
+https://github.com/cristian-szabo-university/mandelbrot-cuda/tree/master/Mandelbrot
+

@@ -10,12 +10,11 @@ import uuid
 from IPython.core.magic import Magics, cell_magic, magics_class
 from common import helper
 
-compiler = '/usr/local/cuda/bin/nvcc'
+compiler = "/usr/local/cuda/bin/nvcc"
 
 
 @magics_class
 class NVCCPlugin3(Magics):
-
     def __init__(self, shell):
         super(NVCCPlugin3, self).__init__(shell)
 
@@ -24,23 +23,23 @@ class NVCCPlugin3(Magics):
     @staticmethod
     def compile(file_path):
         subprocess.check_output(
-            [compiler, file_path + ".cu", "-o", file_path + ".out", '-Wno-deprecated-gpu-targets'], stderr=subprocess.STDOUT)
+            [compiler, file_path + ".cu", "-o", file_path + ".out", "-Wno-deprecated-gpu-targets"],
+            stderr=subprocess.STDOUT,
+        )
 
     def run(self, file_path, timeit=False):
         if timeit:
             stmt = f"subprocess.check_output(['{file_path}.out'], stderr=subprocess.STDOUT)"
-            output = self.shell.run_cell_magic(
-                magic_name="timeit", line="-q -o import subprocess", cell=stmt)
+            output = self.shell.run_cell_magic(magic_name="timeit", line="-q -o import subprocess", cell=stmt)
         else:
-            output = subprocess.check_output(
-                [file_path + ".out"], stderr=subprocess.STDOUT)
-            output = output.decode('utf8')
-            
+            output = subprocess.check_output([file_path + ".out"], stderr=subprocess.STDOUT)
+            output = output.decode("utf8")
+
         helper.print_out(output)
         return None
 
     @cell_magic
-    def compile_and_run(self, line, cell):
+    def nvcuda_and_exec(self, line, cell):
         try:
             args = self.argpacurser.parse_args(line.split())
         except SystemExit as e:
@@ -49,7 +48,7 @@ class NVCCPlugin3(Magics):
 
         with tempfile.TemporaryDirectory() as tmp_dir:
             file_path = os.path.join(tmp_dir, str(uuid.uuid4()))
-            with open(file_path + ext, "w") as f:
+            with open(file_path + ".cu", "w") as f:
                 f.write(cell)
             try:
                 self.compile(file_path)
@@ -66,3 +65,6 @@ def load_ipython_extension(ip):
 
     nvcc_plugin_v2 = NVCC_V2(ip)
     ip.register_magics(nvcc_plugin_v2)
+
+    nvcc_plugin_v3 = NVCCPlugin3(ip)
+    ip.register_magics(nvcc_plugin_v3)
