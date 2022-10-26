@@ -11,10 +11,7 @@ def get_p():
 
 
 def load_extra_magics(ip):
-    from .magics import NVCCUDACPlugin
+    from .magics import NVCCUDACPlugin, NVCUDACPluginBis
 
-    nvcc_plugin_v3 = NVCCUDACPlugin(ip)
-    ip.register_magics(nvcc_plugin_v3)
-
-    nvccudac_plugin2 = NVCCPlugin3(ip)
-    ip.register_magics(nvccudac_plugin2)
+    ip.register_magics(NVCCUDACPlugin(ip))
+    ip.register_magics(NVCUDACPluginBis(ip))
