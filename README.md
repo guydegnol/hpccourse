@@ -39,8 +39,9 @@ int main() {
 # This line just to bypass an exeption and can contain any text
 ```
 
-### Program
+## Program
 
+```
 # 1/5 (2h): Nov-09/13:30
 01 General introduction (slides)
 02 Presentation of notebooks' environment (notebook)
@@ -76,6 +77,7 @@ Ideas
 
 Won't probably do
   Message Passing Programming
+```
 
 # Cours Omar
 https://www.overleaf.com/project/5efda0c4d82afb0001032586
