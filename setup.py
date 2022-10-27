@@ -40,8 +40,6 @@ def get_console_scripts():
     return scripts
 
 
-print(find_packages())
-
 setup(
     # name=get_parameter(),
     name="hpcgpu",
@@ -49,22 +47,11 @@ setup(
     author="Guillaume Therin",
     author_email="guillaume@therin.co",
     packages=find_packages(),
-    #py_modules=[
-    #    "magic_plugin",
-    #    "v2.v2",
-    #    "v1.v1",
-    #    "common.helper",
-    #    "hpcourse.hpcourse",
-    #    "hpcourse.hpcourse3",
-    #    "hpcourse.magics",
-    #],
-    # Dependencies
-    install_requires=["pandas"],  # "thop"
+    # install_requires=["pandas"],  # "thop"
     # Script info
-    # entry_points={"console_scripts": get_console_scripts()},
     url="https://github.com/guydegnol/hpcgpu_course",
     license="LICENSE",
-    description="Course on HPC with CUDA",
+    description="Introduction on High Performance Computing",
     # description='Jupyter notebook plugin to run CUDA C/C++ code',
     # long_description=open('README.md').read(),
 )

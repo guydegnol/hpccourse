@@ -41,41 +41,43 @@ int main() {
 
 ### Program
 
-- Program:
- - 1/5 (2h): Nov-09/13:30
-    - Introduction HPC (45m)
-    - Introduction to git (30m)
-    - Check students configs (45m)
- - 2/5 (4h): Nov-10/08:30
-    - Course: notebook/pandas/numpy/matplotlib (55m)
-    - Exercice: notebook/pandas/numpy/matplotlib (55m)
-    - Improve: code efficiency (55m)
-    - Course: basic C/C++  (55m)
- - 3/5 (4h): Nov-17/08:30
-    - Exercice: basic C/C++ (55m)
-    - Exercice: code efficiency (55m)
-    - Course: multithreading (CPU/GPU) CUDA (55m)
-    - Exercice: multithreading (CPU/GPU) (55m)
- - 4/5 (4h): Dec-01/08:30
-    - Course: examples of resolutions (55m)
-    - Exercice: multithreading (CPU/GPU) (55m)
-    - Course: Same problem with noisy data (15m)
-    - Exercice: multithreading (CPU/GPU) (55m)
-    - Open questions: (55m)
- - 5/5 (4h): Dec-07/13:30
-    - Course: examples of resolutions (15m)
-    - Exercice: multithreading (CPU/GPU) (1h30)
-    - Course: examples of resolutions (15m)
-    - Exercice: multithreading (CPU/GPU) (1h30)
-    - Open questions: (55m)
+# 1/5 (2h): Nov-09/13:30
+01 General introduction (slides)
+02 Presentation of notebooks' environment (notebook)
+03 Computing Metrics (notebook)
+
+# 2/5 (4h): Nov-10/08:30
+04 Hardware architecture (slides)
+05 Introduction to C/C++ (notebook)
+06 GPU programming (CUDA) (slides)
+
+# 3/5 (4h): Nov-17/08:30
+07 Introduction to git (slides)
+08 GPU programming (CUDA) (notebook)
+09 Languages performances: from assembly to python (notebook)
+
+# 4/5 (4h): Dec-01/08:30
+10 Parallel architecture (slides)
+11 Multiprocessing (notebook)
+12 Multithreading (notebook)
+
+# 5/5 (4h): Dec-07/13:30
+13 Pi calculation
+14 Mandelbrot
+15 Matrix multiplication
+16 Cryptocurrencies
+
+Ideas
+   Convergence time
+   Build a search algo
+   https://fractalytics.io/moore-penrose-matrix-optimization-cuda-c
+   https://github.com/ishanthilina/CUDA-Calculation-Experiements/tree/master/q1
+   Dask cuda
+
+Won't probably do
+  Message Passing Programming
 
 # Cours Omar
 https://www.overleaf.com/project/5efda0c4d82afb0001032586
 
-
-# Mandelbrot
-python
-https://github.com/harrism/numba_examples
-c/c++
-https://github.com/cristian-szabo-university/mandelbrot-cuda/tree/master/Mandelbrot
 
