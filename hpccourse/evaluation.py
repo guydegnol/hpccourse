@@ -2,7 +2,6 @@ import argparse
 import datetime
 import os
 
-from google.cloud import firestore
 
 from IPython.core.magic import Magics, cell_magic, magics_class
 
@@ -38,6 +37,8 @@ class Evaluation(Magics):
 
     @cell_magic
     def ipsa_evaluation(self, line, cell):
+        from google.cloud import firestore
+
         if "STUDENT" not in os.environ:
             raise IOError(
                 f"""Register yourself for the evaluation before. Ex:

@@ -1,6 +1,6 @@
 ## High Performance Computing
 
-This project is an introduction course on HPC
+This package is a support library for a course on High Performance Programming on GPU.
 
 
 ##### Cuda extensions

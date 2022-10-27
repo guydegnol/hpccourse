@@ -41,8 +41,7 @@ def get_console_scripts():
 
 
 setup(
-    # name=get_parameter(),
-    name="hpcgpu",
+    name=get_parameter(),
     version=get_version(),
     author="Guillaume Therin",
     author_email="guillaume@therin.co",

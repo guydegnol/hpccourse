@@ -1,1 +1,1 @@
-from . import hpccourse
+from .hpccourse import *
