@@ -1,1 +1,1 @@
-from . import hpcourse 
+from . import hpccourse
