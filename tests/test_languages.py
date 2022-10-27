@@ -1,6 +1,6 @@
-import hpcourse
+import hpccourse
 
-from hpcourse import languages
+from hpccourse import languages
 
 
 def test_languages():

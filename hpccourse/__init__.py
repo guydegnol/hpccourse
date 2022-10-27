@@ -12,7 +12,7 @@ def load_extra_magics(ip):
     ip.register_magics(NVCUDACPluginBis(ip))
     ip.register_magics(Evaluation(ip))
 
-    print(f"Load version hpcourse (version={__version__})")
+    print(f"Load version hpccourse (version={__version__})")
 
 
 def ipsa_login(student_name=None, ip=None):
@@ -21,7 +21,7 @@ def ipsa_login(student_name=None, ip=None):
         raise IOError(
             f"""Register yourself for the course. Ex:
 # John Doe, jdoe, ...
-hpcourse.ipsa_login("jdoe", IPython.get_ipython())
+hpccourse.ipsa_login("jdoe", IPython.get_ipython())
 """
         )
     else:
@@ -30,7 +30,7 @@ hpcourse.ipsa_login("jdoe", IPython.get_ipython())
     if ip is None:
         raise IOError(
             f"""Register yourself for the course using the line:
-hpcourse.register("{student_name}", IPython.get_ipython())
+hpccourse.register("{student_name}", IPython.get_ipython())
 """
         )
 

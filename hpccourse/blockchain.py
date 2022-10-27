@@ -7,7 +7,7 @@ from .block import Block
 
 
 # Display the BlockChain code on the side
-# hpcourse.BlockChain??
+# hpccourse.BlockChain??
 
 import hashlib
 import time

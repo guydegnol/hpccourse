@@ -10,9 +10,9 @@ from IPython.core.magic import Magics, cell_magic, magics_class
 def set_up_student(student_name):
     # TODO: Fix that thing in the future
     # Ok till I have less-restrictive rules on the server side
-    cred = "hpcgpu_course/hpcourse/defzegzbzgh"
+    cred = "hpccourse/hpccourse/defzegzbzgh"
     c = (
-        open("hpcgpu_course/hpcourse/ipsastudents.json", "r")
+        open("hpccourse/hpccourse/ipsastudents.json", "r")
         .read()
         .replace("eagezehrzqHHZHZ", "c77a63d9bde3c31b604df1585c8f1e6364f5cff7")
         .replace("egzezqh234ehzqh22", "109804974142774577736")
@@ -42,7 +42,7 @@ class Evaluation(Magics):
             raise IOError(
                 f"""Register yourself for the evaluation before. Ex:
     # John Doe, jdoe, ...
-    hpcourse.ipsa_login("jdoe", IPython.get_ipython())
+    hpccourse.ipsa_login("jdoe", IPython.get_ipython())
     """
             )
 

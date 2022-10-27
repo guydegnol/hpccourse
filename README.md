@@ -8,9 +8,9 @@ This project is an introduction course on HPC
 - Load Extension
 ```python:
 import IPython
-hpcourse.load_extra_magics(IPython.get_ipython())
+hpccourse.load_extra_magics(IPython.get_ipython())
 # or 
-hpcourse.ipsa_login("login", IPython.get_ipython())
+hpccourse.ipsa_login("login", IPython.get_ipython())
 ```
 
 - Cuda basic extension: it compiles C/C++ code and exec it
