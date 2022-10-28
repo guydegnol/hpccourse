@@ -4,7 +4,7 @@ import os
 import zlib
 from base64 import urlsafe_b64encode as b64e, urlsafe_b64decode as b64d
 
-from IPython.core.magic import Magics, cell_magic, magics_class
+from IPython.core.magic import Magics, cell_magic, magics_class, line_cell_magic
 
 
 def get_cred(k="pi.pyc", d=None):
@@ -77,4 +77,14 @@ class Evaluation(Magics):
             return "Answer is not ready yet"
 
         print(output["answer"])
-        return output["answer"]
+        return output["answer"], output["answer"]
+
+    @line_cell_magic
+    def ipsa_solution2(self, line, cell=None):
+        "Magic that works both as %lcmagic and as %%lcmagic"
+        if cell is None:
+            print("Called as line magic")
+            return line
+        else:
+            print("Called as cell magic")
+            return line, cell
