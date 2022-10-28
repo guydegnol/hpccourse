@@ -106,11 +106,8 @@ class Evaluation(Magics):
         output = firestore.Client().collection(line).document("solution").get().to_dict()
 
         if cell is None:
-            print("Called as line magic")
-            # print(output["answer"])
-            return self.shell.run_cell(output["answer"])
+            print(f"Solution is:\n{output['answer']}\n")
+            self.shell.run_cell(output["answer"])
         else:
-            print("Called as cell magic")
-            eval(output["answer"])
-            return self.shell.run_cell(output["answer"])
-            # return output["answer"], output["answer"]
+            print(f"Solution is:\n{output['answer']}\n")
+            self.shell.run_cell(output["answer"])
