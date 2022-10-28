@@ -71,8 +71,10 @@ class Evaluation(Magics):
         if "STUDENT" not in os.environ:
             set_up_student(None)
 
-        out = firestore.Client().collection(line).document("solution").get()
+        output = firestore.Client().collection("0201_notebook").document("solution").get().to_dict()
 
-        output = f'Answer has been submited for: {line}/{os.environ["STUDENT"]}. You can resubmit it several times'
-        print(output)
-        return out
+        if output is None:
+            return "Answer is not ready yet"
+
+        print(output["answer"])
+        return output["answer"]
