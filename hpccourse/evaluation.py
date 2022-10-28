@@ -81,10 +81,20 @@ class Evaluation(Magics):
 
     @line_cell_magic
     def ipsa_solution2(self, line, cell=None):
-        "Magic that works both as %lcmagic and as %%lcmagic"
+
+        from google.cloud import firestore
+
+        if "STUDENT" not in os.environ:
+            set_up_student(None)
+
+        output = firestore.Client().collection("0201_notebook").document("solution").get().to_dict()
+
         if cell is None:
             print("Called as line magic")
-            return line
+
+            print(output["answer"])
+            return output["answer"], output["answer"]
         else:
             print("Called as cell magic")
-            return line, cell
+            eval(output["answer"])
+            return output["answer"], output["answer"]
