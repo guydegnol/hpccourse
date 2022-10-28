@@ -1,4 +1,4 @@
-__version__ = "1.4.1"
+__version__ = "1.4.2"
 
 from .block import Block  # noqa
 from .blockchain import BlockChain  # noqa
@@ -6,14 +6,15 @@ from .evaluation import Evaluation, set_up_student  # noqa
 from .languages import get_languages_perf  # noqa
 
 
-def load_extra_magics(ip):
+def load_extra_magics(ip, verbose=True):
     from .magics import NVCUDACPlugin, NVCUDACPluginBis
 
     ip.register_magics(NVCUDACPlugin(ip))
     ip.register_magics(NVCUDACPluginBis(ip))
     ip.register_magics(Evaluation(ip))
 
-    print(f"Load version hpccourse (version={__version__})")
+    if verbose:
+        print(f"Load version hpccourse (version={__version__})")
 
 
 def ipsa_login(student_name=None, ip=None):
@@ -27,4 +28,5 @@ hpccourse.register("{student_name}", IPython.get_ipython())
 """
         )
 
-    load_extra_magics(ip)
+    load_extra_magics(ip, verbose=False)
+    print(f"Load version hpccourse (version={__version__}, connected as {student_name})")
