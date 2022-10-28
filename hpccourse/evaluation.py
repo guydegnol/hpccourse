@@ -71,8 +71,8 @@ class Evaluation(Magics):
             {"answer": cell, "update_time": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")}
         )
 
-        output = f'Answer has been submited for: {line}/{os.environ["STUDENT"]}. You can resubmit it several times'
-        print(output)
+        self.shell.run_cell(cell)
+        print(f'Answer has been submited for: {line}/{os.environ["STUDENT"]}. You can resubmit it several times')
         return None
 
     @cell_magic
@@ -97,3 +97,4 @@ class Evaluation(Magics):
     """
             )
             self.shell.run_cell(output["answer"])
+        return None
