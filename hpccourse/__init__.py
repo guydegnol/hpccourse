@@ -19,7 +19,7 @@ def load_extra_magics(ip, verbose=True):
 
 def ipsa_login(student_name=None, ip=None):
 
-    set_up_student(student_name)
+    student_login = set_up_student(student_name)
 
     if ip is None:
         raise Exception.DefaultCredentialsError(
@@ -29,4 +29,4 @@ hpccourse.register("{student_name}", IPython.get_ipython())
         )
 
     load_extra_magics(ip, verbose=False)
-    print(f"Load version hpccourse (version={__version__}, connected as {student_name})")
+    print(f"Load version hpccourse (version={__version__}, connected as {student_login})")

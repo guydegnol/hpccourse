@@ -1,4 +1,21 @@
-{
+import hpccourse
+
+
+import zlib
+from base64 import urlsafe_b64encode as b64e, urlsafe_b64decode as b64d
+
+
+def obscure(data: bytes) -> bytes:
+    return b64e(zlib.compress(data, 9))
+
+
+def unobscure(obscured: bytes) -> bytes:
+    return zlib.decompress(b64d(obscured))
+
+
+def test_evaluation():
+
+    data = """{
     "type": "service_account",
     "project_id": "ipsastudents-81ae0",
     "private_key_id": "eagezehrzqHHZHZ",
@@ -9,4 +26,17 @@
     "token_uri": "https://oauth2.googleapis.com/token",
     "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
     "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-fzzb4%40ipsastudents-81ae0.iam.gserviceaccount.com"
-}
+}"""
+
+    # Obsure
+    b = data.encode("utf-8")
+    u = obscure(b)
+    print(u)
+
+    # Unobscure
+    d = unobscure(u)
+    d = d.decode("utf-8")
+    print(d)
+
+    if d != data:
+        raise Exception("It does not work")

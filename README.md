@@ -51,7 +51,7 @@ Won't probably do
 import IPython
 hpccourse.load_extra_magics(IPython.get_ipython())
 # or 
-hpccourse.ipsa_login("login", IPython.get_ipython())
+hpccourse.ipsa_login("jdoe", IPython.get_ipython())
 ```
 
 - Cuda basic extension: it compiles C/C++ code and exec it
