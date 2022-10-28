@@ -91,9 +91,9 @@ class Evaluation(Magics):
         else:
             print(
                 f"""Solution is:
-    ########## Correction for {line}  ########## 
-    {output["answer"]}
-    ########## Let's execute it {line} ########## 
+########## Correction for {line}  ########## 
+{output["answer"]}
+########## Let's execute it {line} ########## 
     """
             )
             self.shell.run_cell(output["answer"])
