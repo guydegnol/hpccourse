@@ -9,7 +9,8 @@ from IPython.core.magic import Magics, cell_magic, magics_class
 
 def get_cred(cred="hpccourse/hpccourse/defzegzbzgh"):
 
-    data = """{
+    data = open("hpccourse/hpccourse/evaluation").read()
+    data2 = """{
   "type": "service_account",
   "project_id": "ipsastudents-81ae0",
   "private_key_id": "eagezehrzqHHZHZ",
