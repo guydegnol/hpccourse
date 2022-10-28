@@ -44,10 +44,6 @@ Won't probably do
   Message Passing Programming
 ```
 
-# Cours Omar
-https://www.overleaf.com/project/5efda0c4d82afb0001032586
-
-
 ##### Cuda extensions
 
 - Load Extension
