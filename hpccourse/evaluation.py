@@ -75,7 +75,7 @@ class Evaluation(Magics):
         print(f'Answer has been submited for: {line}/{os.environ["STUDENT"]}. You can resubmit it several times')
         return None
 
-    @cell_magic
+    @line_cell_magic
     @needs_local_scope
     def ipsa_solution(self, line, cell, local_ns=None):
 
