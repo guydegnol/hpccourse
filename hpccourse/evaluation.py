@@ -9,6 +9,15 @@ from IPython.core.magic import Magics, cell_magic, magics_class
 def set_up_student(student_name):
     # TODO: Fix that thing in the future
     # Ok till I have less-restrictive rules on the server side
+
+    if student_name is None:
+        raise Exception.DefaultCredentialsError(
+            f"""Register yourself please. Ex:
+# John Doe => jdoe, ...
+hpccourse.ipsa_login("jdoe", IPython.get_ipython())
+"""
+        )
+
     cred = "hpccourse/hpccourse/defzegzbzgh"
     c = (
         open("hpccourse/hpccourse/ipsastudents.json", "r")
@@ -40,17 +49,12 @@ class Evaluation(Magics):
         from google.cloud import firestore
 
         if "STUDENT" not in os.environ:
-            raise IOError(
-                f"""Register yourself for the evaluation before. Ex:
-    # John Doe, jdoe, ...
-    hpccourse.ipsa_login("jdoe", IPython.get_ipython())
-    """
-            )
+            set_up_student(None)
 
         firestore.Client().collection(line).document(os.environ["STUDENT"]).set(
             {"answer": cell, "update_time": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")}
         )
 
-        output = f'Answer has been submited for {line}/{os.environ["STUDENT"]}. You can resubmit it several times'
+        output = f'Answer has been submited for: {line}/{os.environ["STUDENT"]}. You can resubmit it several times'
         print(output)
         return None

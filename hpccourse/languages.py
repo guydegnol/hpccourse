@@ -93,12 +93,16 @@ perfs = {
 
 
 def get_languages_perf():
-    """
-    Specifically, they used 10 problems from the Computer Language Benchmarks Game,
+    """References:
+    - https://dl.acm.org/doi/10.1145/3136014.3136031
+    - https://en.wikipedia.org/wiki/The_Computer_Language_Benchmarks_Game
+
+    They used 10 problems from the Computer Language Benchmarks Game,
     a free software project for comparing performance which includes a standard set of simple
     algorithmic problems, as well as a framework for running tests.
     (It was formerly known as “The Great Computer Language Shootout.”)
     “This allowed us to obtain a comparable, representative, and extensive set of programs… along with the compilation/execution options,
     and compiler versions.”"""
 
+    print("A bit more about the data: https://en.wikipedia.org/wiki/The_Computer_Language_Benchmarks_Game")
     return pd.DataFrame(perfs)
