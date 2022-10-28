@@ -77,7 +77,7 @@ class Evaluation(Magics):
 
     @line_cell_magic
     @needs_local_scope
-    def ipsa_solution(self, line, cell, local_ns=None):
+    def ipsa_solution(self, line, cell="", local_ns=None):
 
         from google.cloud import firestore
 
