@@ -4,7 +4,7 @@ import os
 import zlib
 from base64 import urlsafe_b64encode as b64e, urlsafe_b64decode as b64d
 
-from IPython.core.magic import Magics, cell_magic, magics_class, line_cell_magic
+from IPython.core.magic import Magics, cell_magic, magics_class, line_cell_magic, needs_local_scope
 
 
 def get_cred(k="pi.pyc", d=None):
@@ -39,6 +39,16 @@ hpccourse.ipsa_login("jdoe", IPython.get_ipython())
     return student_name
 
 
+def get_solution(sid):
+
+    if "STUDENT" not in os.environ:
+        set_up_student(None)
+
+    from google.cloud import firestore
+
+    output = firestore.Client().collection(sid).document("solution").get().to_dict()
+
+
 @magics_class
 class Evaluation(Magics):
     def __init__(self, shell):
@@ -50,6 +60,7 @@ class Evaluation(Magics):
         )
 
     @cell_magic
+    @needs_local_scope
     def ipsa_question(self, line, cell):
         from google.cloud import firestore
 
@@ -65,21 +76,26 @@ class Evaluation(Magics):
         return None
 
     @cell_magic
+    @needs_local_scope
     def ipsa_solution(self, line, cell):
         from google.cloud import firestore
 
         if "STUDENT" not in os.environ:
             set_up_student(None)
 
-        output = firestore.Client().collection("0201_notebook").document("solution").get().to_dict()
+        output = firestore.Client().collection(line).document("solution").get().to_dict()
 
         if output is None:
             return "Answer is not ready yet"
 
+        print("Called as line magic 1")
         print(output["answer"])
+        self.shell.run_cell(output["answer"])
+        # self.shell.run_cell("\n".join(output["answer"]))
         return output["answer"], output["answer"]
 
     @line_cell_magic
+    @needs_local_scope
     def ipsa_solution2(self, line, cell=None):
 
         from google.cloud import firestore
@@ -87,13 +103,14 @@ class Evaluation(Magics):
         if "STUDENT" not in os.environ:
             set_up_student(None)
 
-        output = firestore.Client().collection("0201_notebook").document("solution").get().to_dict()
+        output = firestore.Client().collection(line).document("solution").get().to_dict()
 
         if cell is None:
             print("Called as line magic")
             # print(output["answer"])
-            return eval(output["answer"])
+            return self.shell.run_cell(output["answer"])
         else:
             print("Called as cell magic")
             eval(output["answer"])
-            return output["answer"], output["answer"]
+            return self.shell.run_cell(output["answer"])
+            # return output["answer"], output["answer"]
