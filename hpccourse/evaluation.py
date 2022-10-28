@@ -91,9 +91,8 @@ class Evaluation(Magics):
 
         if cell is None:
             print("Called as line magic")
-
-            print(output["answer"])
-            return output["answer"], output["answer"]
+            # print(output["answer"])
+            return eval(output["answer"])
         else:
             print("Called as cell magic")
             eval(output["answer"])
