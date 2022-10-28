@@ -90,8 +90,7 @@ class Evaluation(Magics):
             print(f"Solution for {line} is not available (yet).")
         else:
             print(
-                f"""Solution is:
-########## Correction for {line} is:          ########## 
+                f"""########## Correction for {line} is:          ########## 
 {output["answer"]}
 ########## Let's execute the code {line} now: ########## 
     """
