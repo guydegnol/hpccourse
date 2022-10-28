@@ -75,28 +75,9 @@ class Evaluation(Magics):
         print(output)
         return None
 
-    @cell_magic
-    @needs_local_scope
-    def ipsa_solution(self, line, cell):
-        from google.cloud import firestore
-
-        if "STUDENT" not in os.environ:
-            set_up_student(None)
-
-        output = firestore.Client().collection(line).document("solution").get().to_dict()
-
-        if output is None:
-            return "Answer is not ready yet"
-
-        print("Called as line magic 1")
-        print(output["answer"])
-        self.shell.run_cell(output["answer"])
-        # self.shell.run_cell("\n".join(output["answer"]))
-        return output["answer"], output["answer"]
-
     @line_cell_magic
     @needs_local_scope
-    def ipsa_solution2(self, line="", cell=None, local_ns=None):
+    def ipsa_solution(self, line="", cell=None, local_ns=None):
 
         from google.cloud import firestore
 
@@ -105,9 +86,11 @@ class Evaluation(Magics):
 
         output = firestore.Client().collection(line).document("solution").get().to_dict()
 
-        if cell is None:
-            print(f"Solution is:\n{output['answer']}\n")
-            self.shell.run_cell(output["answer"])
-        else:
-            print(f"Solution is:\n{output['answer']}\n")
-            self.shell.run_cell(output["answer"])
+        print(
+            f"""Solution is:
+########## Correction for {line}  ########## 
+{output['answer']}
+########## Let's execute it {line} ########## 
+"""
+        )
+        self.shell.run_cell(output["answer"])
