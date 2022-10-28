@@ -7,7 +7,6 @@ This package is a support library for a course on High Performance Programming o
 
 ## Program
 
-```
 # 1/5 (2h): Nov-09/13:30
 01 General introduction (slides)
 02 Presentation of notebooks' environment (notebook)
@@ -83,8 +82,3 @@ int main() {
 ```python
 %%cuda_run
 # This line just to bypass an exeption and can contain any text
-
-
-ilyas.arbouhi@ipsa.fr, ghislain.astier@ipsa.fr,pierre-olivier.briat@ipsa.fr,hugo.dubois@ipsa.fr,charles.duquesnoy@ipsa.fr,ali.el-khalil@ipsa.fr,romain.gardon@ipsa.fr,
-abdelrahman.gohar@ipsa.fr,deo-gratias.houenou@ipsa.fr,luca.krebs@ipsa.fr,jean-charles.lacoffe@ipsa.fr,pauline.lelievre@ipsa.fr,loic1.martinez@ipsa.fr,adrien.mennessier@ipsa.fr,
-justine.molina@ipsa.fr,alessandra.paddeu@ipsa.fr,nicolas.pepin@ipsa.fr,hugo.pires@ipsa.fr,celia.seka@ipsa.fr,celine.suffys@ipsa.fr,lucas.trias@ipsa.fr,quentin.vaunac@ipsa.fr
