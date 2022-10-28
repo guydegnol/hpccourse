@@ -85,12 +85,16 @@ class Evaluation(Magics):
             set_up_student(None)
 
         output = firestore.Client().collection(line).document("solution").get().to_dict()
+        answer = "Print('')" if output is None else output["answer"]
 
-        print(
-            f"""Solution is:
-########## Correction for {line}  ########## 
-{output['answer']}
-########## Let's execute it {line} ########## 
-"""
-        )
-        self.shell.run_cell(output["answer"])
+        if output is None:
+            print(f"Solution for {line} is not available (yet).")
+        else:
+            print(
+                f"""Solution is:
+    ########## Correction for {line}  ########## 
+    {output["answer"]}
+    ########## Let's execute it {line} ########## 
+    """
+            )
+            self.shell.run_cell(output["answer"])
