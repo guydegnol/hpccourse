@@ -61,7 +61,7 @@ class Evaluation(Magics):
 
     @cell_magic
     @needs_local_scope
-    def ipsa_question(self, line, cell):
+    def ipsa_question(self, line, cell, local_ns=None):
         from google.cloud import firestore
 
         if "STUDENT" not in os.environ:
@@ -75,9 +75,9 @@ class Evaluation(Magics):
         print(output)
         return None
 
-    @line_cell_magic
+    @cell_magic
     @needs_local_scope
-    def ipsa_solution(self, line="", cell="", local_ns=None):
+    def ipsa_solution(self, line, cell, local_ns=None):
 
         from google.cloud import firestore
 
@@ -85,7 +85,6 @@ class Evaluation(Magics):
             set_up_student(None)
 
         output = firestore.Client().collection(line).document("solution").get().to_dict()
-        answer = "Print('')" if output is None else output["answer"]
 
         if output is None:
             print(f"Solution for {line} is not available (yet).")
