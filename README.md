@@ -9,7 +9,7 @@ This package is a support library for a course on High Performance Programming o
 
 # 1/5 (2h): Nov-09/13:30
 01 General introduction (slides)
-02 Presentation of notebooks' environment (notebook)
+02 Notebooks' environment (notebook)
 03 Computing Metrics (notebook)
 
 # 2/5 (4h): Nov-10/08:30
@@ -38,6 +38,7 @@ Ideas
    Build a search algo
    https://fractalytics.io/moore-penrose-matrix-optimization-cuda-c
    https://github.com/ishanthilina/CUDA-Calculation-Experiements/tree/master/q1
+   https://en.wikipedia.org/wiki/N-body_simulation
    Dask cuda
 
 Won't probably do
