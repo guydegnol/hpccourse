@@ -29,7 +29,7 @@ def get_engraving_scale(verbose=False):
     table = get_html_object(
         wpage="Transistor_count",
         in_table="800 nm",
-        verbose=True,
+        verbose=verbose,
         sclass="sidebar-content",
     )
 
