@@ -1,4 +1,4 @@
-__version__ = "1.5.0"
+__version__ = "1.5.1"
 
 from .block import Block  # noqa
 from .blockchain import BlockChain  # noqa
@@ -19,9 +19,9 @@ def load_extra_magics(ip, verbose=True):
         print(f"Load version hpccourse (version={__version__})")
 
 
-def ipsa_login(student_name=None, ip=None):
+def ipsa_login(student_name=None, ip=None, pass_code=None):
 
-    student_login = set_up_student(student_name)
+    student_login = set_up_student(student_name, pass_code=pass_code)
 
     if ip is None:
         raise Exception.DefaultCredentialsError(

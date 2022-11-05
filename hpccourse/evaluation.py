@@ -27,7 +27,7 @@ def set_up_student(student_name, d="hpccourse/hpccourse/", pass_code=None):
             f"""Register yourself please. Ex:
 # John Doe => jdoe, ...
 # Don't forget to take the password in class
-hpccourse.ipsa_login("jdoe", IPython.get_ipython(), p="PASS")
+hpccourse.ipsa_login("jdoe", IPython.get_ipython(), pass_code="PASS")
 """
         )
 
