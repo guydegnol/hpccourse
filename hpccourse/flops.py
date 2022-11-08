@@ -92,7 +92,7 @@ class FLOPS:
         return self.costs
 
 
-def get_flops(model_name, batch_size=None, verbose=True):
+def get_flops(model_name, batch_size=None, verbose=True, summary=False):
 
     import tensorflow as tf
     from tensorflow.python.framework.convert_to_constants import convert_variables_to_constants_v2_as_graph
@@ -107,6 +107,9 @@ def get_flops(model_name, batch_size=None, verbose=True):
     else:
         print(dir(tf.keras.applications))
 
+    if summary:
+        model.summary()
+
     if batch_size is None:
         batch_size = 1
 
@@ -120,5 +123,5 @@ def get_flops(model_name, batch_size=None, verbose=True):
     flops = tf.compat.v1.profiler.profile(graph=frozen_func.graph, run_meta=run_meta, cmd="op", options=opts)
 
     if verbose:
-        print(f"{model.name}: {flops:,} FLOPS")
+        print(f"{model.__class__}: {flops:,} FLOPS")
     return flops.total_float_ops
