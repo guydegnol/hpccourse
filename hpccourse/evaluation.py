@@ -112,12 +112,12 @@ class Evaluation(Magics):
         output = firestore.Client().collection(line).document("solution").get().to_dict()
 
         if output is None:
-            print(f"Solution for {line} is not available (yet).")
+            print(f"Solution (for question {line}) is not available (yet)")
         else:
             print(
-                f"""########## Correction for {line} is:          ########## 
+                f"""########## Correction (for {line}) is:          ########## 
 {output["answer"]}
-########## Let's execute the code {line} now: ########## 
+########## Let's execute the code (for {line}) now: ########## 
     """
             )
             self.shell.run_cell(output["answer"])
