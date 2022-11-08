@@ -12,8 +12,8 @@ This package is a support library for the course on High Performance Programming
 03 Computing Metrics (notebook)
 
 # 2/5 (4h): Nov-10/08:30
-04 Hardware architecture (slides)
 03 Computing Metrics (notebook)
+04 Hardware architecture (slides)
 05 Introduction to C/C++ (notebook)
 
 # 3/5 (4h): Nov-17/08:30
