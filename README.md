@@ -3,10 +3,9 @@
 This package is a support library for the course on High Performance Programming on GPU at IPSA.
 
 
+## Plan of this modeule (as of today)
+
 ```
-
-## Program
-
 # 1/5 (2h): Nov-09/13:30
 01 General introduction (slides)
 02 Notebooks' environment (notebook)
@@ -14,6 +13,7 @@ This package is a support library for the course on High Performance Programming
 
 # 2/5 (4h): Nov-10/08:30
 04 Hardware architecture (slides)
+03 Computing Metrics (notebook)
 05 Introduction to C/C++ (notebook)
 
 # 3/5 (4h): Nov-17/08:30
@@ -84,5 +84,5 @@ int main() {
 ## Data
 
 #### `data/supercomputer-power-flops.csv`
-The file `data/supercomputer-power-flops.csv` has been downloaded from the page https://ourworldindata.org/grapher/supercomputer-power-flops
+The file has been downloaded from the page https://ourworldindata.org/grapher/supercomputer-power-flops
 
