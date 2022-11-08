@@ -97,15 +97,13 @@ def get_flops(model_name, batch_size=None, verbose=True, summary=False):
     import tensorflow as tf
     from tensorflow.python.framework.convert_to_constants import convert_variables_to_constants_v2_as_graph
 
-    # from tensorflow.keras.applications.resnet50 import ResNet50
-    # from tensorflow.keras.applications.vgg16 import VGG16
-
+    available_models = list(dir(tf.keras.applications))
     if type(model_name) != str:
         model = model_name
-    elif model_name in dir(tf.keras.applications):
+    elif model_name in available_models:
         model = getattr(tf.keras.applications, model_name)(weights="imagenet")
     else:
-        print(dir(tf.keras.applications))
+        print(f"Available models:\n{available_models}")
 
     if summary:
         model.summary()
