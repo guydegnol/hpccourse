@@ -121,5 +121,5 @@ def get_tf_flops(model_name, batch_size=None, verbose=True, summary=False, weigh
     flops = tf.compat.v1.profiler.profile(graph=frozen_func.graph, run_meta=run_meta, cmd="op", options=opts)
 
     if verbose:
-        print(f"{model.name}: {flops.total_float_ops:,} FLOPS ({weights})")
-    return flops.total_float_ops
+        print(f"{model.name}: {flops.total_float_ops:,} FLOPS,  {flops.total_float_ops/2:,} MAC ({weights})")
+    return model
