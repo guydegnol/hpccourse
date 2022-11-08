@@ -96,8 +96,9 @@ def get_flops(model_name, batch_size=None, verbose=True):
 
     import tensorflow as tf
     from tensorflow.python.framework.convert_to_constants import convert_variables_to_constants_v2_as_graph
-    from tensorflow.keras.applications.resnet50 import ResNet50
-    from tensorflow.keras.applications.vgg16 import VGG16
+
+    # from tensorflow.keras.applications.resnet50 import ResNet50
+    # from tensorflow.keras.applications.vgg16 import VGG16
 
     if type(model_name) != str:
         model = model_name
@@ -119,5 +120,5 @@ def get_flops(model_name, batch_size=None, verbose=True):
     flops = tf.compat.v1.profiler.profile(graph=frozen_func.graph, run_meta=run_meta, cmd="op", options=opts)
 
     if verbose:
-        print(f"RESNET: {flops:,} FLOPS")
+        print(f"{model_name}: {flops:,} FLOPS")
     return flops.total_float_ops
