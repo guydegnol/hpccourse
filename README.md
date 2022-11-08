@@ -15,14 +15,14 @@ This package is a support library for a course on High Performance Programming o
 # 2/5 (4h): Nov-10/08:30
 04 Hardware architecture (slides)
 05 Introduction to C/C++ (notebook)
-06 GPU programming (CUDA) (slides)
 
 # 3/5 (4h): Nov-17/08:30
-07 Introduction to git (notebook)
-08 GPU programming (CUDA) (notebook)
-09 Languages performances: from assembly to python (notebook)
+06 GPU programming (CUDA) (slides)
+07 GPU programming (CUDA) (notebook)
+08 Introduction to git (notebook)
 
 # 4/5 (4h): Dec-01/08:30
+09 Languages performances: from assembly to python (notebook)
 10 Parallel architecture (slides)
 11 Multiprocessing (notebook)
 12 Multithreading (notebook)
