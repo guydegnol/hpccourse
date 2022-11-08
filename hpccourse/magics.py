@@ -60,6 +60,33 @@ class NVCUDACPlugin(Magics):
                 output = None
         return output
 
+    @cell_magic
+    def ipsa_compile_and_exec(self, line, cell):
+        try:
+            args = self.argparser.parse_args(line.split())
+        except SystemExit as e:
+            self.argparser.print_help()
+            return
+
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            file_path = os.path.join(tmp_dir, str(uuid.uuid4()))
+            with open(file_path + ".cu", "w") as f:
+                f.write(cell)
+            try:
+                opts = line.split()
+                subprocess.check_output(
+                    [opts[0], file_path + ".cu", "-o", file_path + ".out", "-Wno-deprecated-gpu-targets"] + opts[1:],
+                    stderr=subprocess.STDOUT,
+                )
+
+                self.compile(file_path)
+                output = self.run(file_path, timeit=args.timeit)
+            except subprocess.CalledProcessError as e:
+                for l in e.output.decode("utf8").split("\n"):
+                    print(l)
+                output = None
+        return output
+
 
 @magics_class
 class NVCUDACPluginBis(Magics):

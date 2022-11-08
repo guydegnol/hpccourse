@@ -19,14 +19,42 @@ def get_cred(k="pi.pyc", d=None, pass_code=None):
     return d + k
 
 
+"""
+
+AD102 Ada Lovelace	76,300,000,000	2022	Nvidia	TSMC	4 nm	608.4 mm²	125,411,000	[216]
+GeForce RTX AD102-300	$1599		76.3	608.5	16384
+128	72	2230
+(2520)	21.0	392.5
+(443.5)	1141.8
+24	1008	384	
+73.073  73.073  1.142   330.3   450
+
+AD103 Ada Lovelace	45,900,000,000	2022	Nvidia	TSMC	4 nm	378.6 mm²	121,240,000	[217]
+GeForce RTX AD103-300	$1199		45.9	378.6	9728
+76	64	2210
+(2505)	22.4	247.5
+(280.6)	671.8
+16	716.8	256	
+42.998  42.998  0.672   194.9   320
+
+AD104 Ada Lovelace	35,800,000,000	2022	Nvidia	TSMC	4 nm	294.5 mm²	121,560,000	[217]
+GeForce RTX AD104-400	$899		35.8	294.5	7680
+60	48	2310
+(2610)	21.0	184.8
+(208.8)	554.4
+12	504	192	
+35.482  35.482  0.554   160.4   285
+
+
+"""
+
+
 def set_up_student(student_name, d="hpccourse/hpccourse/", pass_code=None):
     # TODO: Fix that thing in the future
     # Ok till I have less-restrictive rules on the server side
     if student_name is None or pass_code is None or pass_code == "PASS_COURSE":
         raise Exception.DefaultCredentialsError(
-            f"""Register yourself please. Ex:
-# John Doe => jdoe, ...
-# Don't forget to take the password in class
+            f"""# Register yourself please (Don't forget to take the password in class). Ex: John Doe => jdoe, ...
 hpccourse.ipsa_login("jdoe", IPython.get_ipython(), pass_code="PASS")
 """
         )
@@ -58,7 +86,7 @@ class Evaluation(Magics):
 
     @cell_magic
     @needs_local_scope
-    def ipsa_question(self, line, cell, local_ns=None):
+    def ipsa_send_answer(self, line, cell, local_ns=None):
         from google.cloud import firestore
 
         if "STUDENT" not in os.environ:
@@ -74,7 +102,7 @@ class Evaluation(Magics):
 
     @line_cell_magic
     @needs_local_scope
-    def ipsa_solution(self, line, cell="", local_ns=None):
+    def ipsa_get_solution(self, line, cell="", local_ns=None):
 
         from google.cloud import firestore
 
