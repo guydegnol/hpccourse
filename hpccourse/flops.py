@@ -92,14 +92,13 @@ class FLOPS:
         return self.costs
 
 
-def get_tf_flops(model_name, batch_size=None, verbose=True, summary=False, weights="imagenet"):
-
+def get_tf_model(model_name, weights="imagenet", summary=False):
     import tensorflow as tf
-    from tensorflow.python.framework.convert_to_constants import convert_variables_to_constants_v2_as_graph
 
     available_models = list(dir(tf.keras.applications))
+    model = model_name
     if type(model_name) != str:
-        model = model_name
+        pass
     elif model_name in available_models:
         model = getattr(tf.keras.applications, model_name)(weights=weights)
     else:
@@ -107,6 +106,16 @@ def get_tf_flops(model_name, batch_size=None, verbose=True, summary=False, weigh
 
     if summary:
         model.summary()
+
+    return model
+
+
+def get_tf_flops(model_name, batch_size=None, verbose=True, summary=False, weights="imagenet"):
+
+    import tensorflow as tf
+    from tensorflow.python.framework.convert_to_constants import convert_variables_to_constants_v2_as_graph
+
+    model = get_tf_model(model_name, weights=weights, summary=summary)
 
     if batch_size is None:
         batch_size = 1
@@ -122,4 +131,4 @@ def get_tf_flops(model_name, batch_size=None, verbose=True, summary=False, weigh
 
     if verbose:
         print(f"{model.name}: {flops.total_float_ops:,} FLOPS,  {flops.total_float_ops/2:,} MAC ({weights})")
-    return model
+    return flops.total_float_ops
