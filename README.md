@@ -1,6 +1,6 @@
 ## High Performance Computing
 
-This package is a support library for a course on High Performance Programming on GPU.
+This package is a support library for the course on High Performance Programming on GPU at IPSA.
 
 
 ```
@@ -79,11 +79,4 @@ int main() {
 ```python
 %%cuda_run
 # This line just to bypass an exeption and can contain any text
-
-# Some pages:
-
-Comparison of flops GPU, CPU
-https://deci.ai/blog/flops-vs-run-time-comparison/
-
-End of Moore's law
-https://www.technologyreview.com/2020/02/24/905789/were-not-prepared-for-the-end-of-moores-law/
+```
