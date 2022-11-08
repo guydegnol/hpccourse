@@ -1,4 +1,4 @@
-__version__ = "1.5.2"
+__version__ = "1.5.3"
 
 from .block import Block  # noqa
 from .blockchain import BlockChain  # noqa
@@ -22,13 +22,8 @@ def load_extra_magics(ip, verbose=True):
 def ipsa_login(student_name=None, ip=None, pass_code=None):
 
     student_login = set_up_student(student_name, pass_code=pass_code)
-
     if ip is None:
-        raise Exception.DefaultCredentialsError(
-            f"""Register yourself for the course using the line:
-hpccourse.register("{student_name}", IPython.get_ipython())
-"""
-        )
+        set_up_student(None)
 
     load_extra_magics(ip, verbose=False)
     print(f"Load version hpccourse (version={__version__}, connected as {student_login})")

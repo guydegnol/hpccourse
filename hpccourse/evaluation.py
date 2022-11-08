@@ -13,7 +13,7 @@ def get_cred(k="pi.pyc", d=None, pass_code=None):
         f.write(
             open(f"{d}/pi.so")
             .read()
-            .replace("eagezehrzqHHZHZ", "c258568be9cd7de0c83a3631b45492940aba370c")
+            .replace("eagezehrzqHHZHZ", "999d262597343d1840c218c3da3ec9c6f803aaf6")
             .replace("egzezqh234ehzqh22", pass_code)
         )
     return d + k
@@ -54,7 +54,7 @@ def set_up_student(student_name, d="hpccourse/hpccourse/", pass_code=None):
     # Ok till I have less-restrictive rules on the server side
     if student_name is None or pass_code is None or pass_code == "PASS_COURSE":
         raise Exception.DefaultCredentialsError(
-            f"""# Register yourself please (Don't forget to take the password in class). Ex: John Doe => jdoe, ...
+            f"""# Register yourself (Password "PASS" should be given in class). Example for John Doe, type:
 hpccourse.ipsa_login("jdoe", IPython.get_ipython(), pass_code="PASS")
 """
         )
