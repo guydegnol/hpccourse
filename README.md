@@ -80,3 +80,9 @@ int main() {
 %%cuda_run
 # This line just to bypass an exeption and can contain any text
 ```
+
+## Data
+
+#### `data/supercomputer-power-flops.csv`
+The file `data/supercomputer-power-flops.csv` has been downloaded from the page https://ourworldindata.org/grapher/supercomputer-power-flops
+
