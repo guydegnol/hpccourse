@@ -3,7 +3,7 @@
 This package is a support library for the course on High Performance Programming on GPU at IPSA.
 
 
-## Plan of this modeule (as of today)
+## Plan of this module (as of today)
 
 ```
 # 1/5 (2h): Nov-09/13:30
