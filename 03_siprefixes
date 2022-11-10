@@ -1,0 +1,8 @@
+##########################################
+Answer from csuffys at 2022-11-10 08:49:00
+##########################################
+si_prefixes = hpccourse.get_table_from_wiki(
+    wpage="FLOPS",
+    in_table="wikitable floatright")
+si_prefixes
+

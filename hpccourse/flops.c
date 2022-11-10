@@ -10,6 +10,7 @@ int main(int argc, char *argv[]) {
     for (i = 0; i < operations; ++i) {
         floating_point += float_increment;
     }   
+    printf("Salut, ca va bien\n");
     printf("%lf\n", floating_point);
 
     return EXIT_SUCCESS;

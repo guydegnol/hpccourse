@@ -1,0 +1,338 @@
+###########################################
+Answer from A Paddeu at 2022-11-10 08:40:10
+###########################################
+cpus = hpccourse.get_table_from_wiki(
+    wpage="Transistor_count",
+    in_table="20-bit, 6-chip, 28 chips total",
+    columns=["processor", "count", "date", "designer", "engraving_scale", "area", "density"],
+)
+cpus = cpus[["date", "count", "designer", "engraving_scale", "processor"]].iloc[:-1]
+
+gpus = hpccourse.get_table_from_wiki(
+    wpage="Transistor_count",
+    in_table="Voodoo Graphics",
+    columns=[
+        "processor",
+        "count",
+        "date",
+        "designer",
+        "manufacturer",
+        "engraving_scale",
+        "area",
+        "density",
+        "ref",
+        "dummy",
+    ],
+)
+gpus = gpus[["date", "count", "designer", "engraving_scale", "processor"]].iloc[:-1]
+
+cpus = pd.concat([cpus.assign(ptype="cpu"),gpus.assign(ptype="gpu")],axis=0)
+
+##############################################
+Answer from AliElKhalil at 2022-11-10 08:35:44
+##############################################
+cpus = hpccourse.get_table_from_wiki(
+    wpage="Transistor_count",
+    in_table="20-bit, 6-chip, 28 chips total",
+    columns=["processor", "count", "date", "designer", "engraving_scale", "area", "density"],
+)
+cpus = cpus[["date", "count", "designer", "engraving_scale", "processor"]].iloc[:-1]
+
+gpus = hpccourse.get_table_from_wiki(
+    wpage="Transistor_count",
+    in_table="Voodoo Graphics",
+    columns=[
+        "processor",
+        "count",
+        "date",
+        "designer",
+        "manufacturer",
+        "engraving_scale",
+        "area",
+        "density",
+        "ref",
+        "dummy",
+    ],
+)
+gpus = gpus[["date", "count", "designer", "engraving_scale", "processor"]].iloc[:-1]
+gpus["date"] = gpus["date"].str.replace("March ","").str.replace("November ","")
+gpus["date"] = gpus["date"].str.split('[').str[0]
+gpus["count"] = pd.to_numeric(gpus["count"],errors = 'coerce')
+
+
+ax = gpus.plot.scatter(x = 'date', y = 'count', c = 'red', logy=True)
+ax.set_ylabel("Transistors Count")
+
+#############################################
+Answer from CDuquesnoy at 2022-11-10 08:57:03
+#############################################
+cpus = hpccourse.get_table_from_wiki(
+    wpage="Transistor_count",
+    in_table="20-bit, 6-chip, 28 chips total",
+    columns=["processor", "count", "date", "designer", "engraving_scale", "area", "density"],
+)
+cpus = cpus[["date", "count", "designer", "engraving_scale", "processor"]].iloc[:-1]
+
+gpus = hpccourse.get_table_from_wiki(
+    wpage="Transistor_count",
+    in_table="Voodoo Graphics",
+    columns=[
+        "processor",
+        "count",
+        "date",
+        "designer",
+        "manufacturer",
+        "engraving_scale",
+        "area",
+        "density",
+        "ref",
+        "dummy",
+    ],
+)
+gpus = gpus[["date", "count", "designer", "engraving_scale", "processor"]].iloc[:-1]
+
+#Formatage Data CPUS
+cpus['date'] = cpus['date'].str.split("[").str[0].astype('float')
+cpus['count'] = cpus['count'].str.split("(").str[0]
+cpus['count'] = cpus['count'].str.split("[").str[0]
+cpus['count'] = cpus['count'].str.split("+").str[0]
+cpus['count'] = cpus['count'].str.split("-").str[0]
+cpus['count'] = cpus['count'].str.replace(",","")
+cpus['count'] = cpus['count'].str.replace(" ","")
+cpus['count'] = pd.to_numeric(cpus['count'],errors = 'coerce' ) 
+
+
+#Formatage Data GPUS
+
+gpus['date'] = gpus['date'].str.replace("March","").str.replace("November","")
+gpus['date'] = gpus['date'].astype('float')
+gpus['count'] = pd.to_numeric(gpus['count'],errors = 'coerce')
+
+
+
+#Grpahique
+
+fig = plt.figure(figsize=(15,10))
+plt.yscale('log')
+
+xcpus = cpus['date']
+ycpus = cpus['count']
+
+xgpus = gpus['date']
+ygpus = gpus['count']
+
+plt.plot(xcpus,ycpus,'xb', label = 'CPUS')
+plt.plot(xgpus,ygpus,'.k', label = 'GPUS')
+
+plt.grid()
+plt.legend()
+plt.show()
+
+
+##########################################
+Answer from csuffys at 2022-11-10 08:43:22
+##########################################
+cpus = hpccourse.get_table_from_wiki(
+    wpage="Transistor_count",
+    in_table="20-bit, 6-chip, 28 chips total",
+    columns=["processor", "count", "date", "designer", "engraving_scale", "area", "density"],
+)
+cpus = cpus[["date", "count", "designer", "engraving_scale", "processor"]].iloc[:-1]
+#print(cpus)
+
+gpus = hpccourse.get_table_from_wiki(
+    wpage="Transistor_count",
+    in_table="Voodoo Graphics",
+    columns=[
+        "processor",
+        "count",
+        "date",
+        "designer",
+        "manufacturer",
+        "engraving_scale",
+        "area",
+        "density",
+        "ref",
+        "dummy",
+    ],
+)
+gpus = gpus[["date", "count", "designer", "engraving_scale", "processor"]].iloc[:-1]
+#print(gpus)
+
+#on nettoie les données 
+trans = pd.concat([cpus.assign(ptype = 'cpu'), gpus.assign(ptype = 'gpu')], axis =0)
+#date
+trans["date"] = trans["date"].str.split('[').str[0]
+#count
+trans["count"] = trans["count"].str.split('(').str[0]
+trans["count"] = trans["count"].str.split('[').str[0]
+gpus['count'] = gpus["count"].str.replace("March", "").str.replace("November","")
+trans["count"] = trans["count"].str.replace(",", "").str.replace(" ", "")
+trans["count"] = trans["count"].str.split('+').str[0]
+trans["count"] = trans["count"].str.split("-LUTs").str[0]
+trans["count"] = trans["count"].str.split('?').str[0]
+trans["count"] = pd.to_numeric(trans["count"], errors="coerce")
+
+print(trans)
+trans["count"].astype(float)
+
+#on affiche le graph
+y = trans['date']
+X = trans['count']
+plt.yscale("log")
+plt.plot(y,X, '*', color='blue')
+plt.show()
+
+############################################
+Answer from jclacoffe at 2022-11-10 08:45:05
+############################################
+cpus = hpccourse.get_table_from_wiki(
+    wpage="Transistor_count",
+    in_table="20-bit, 6-chip, 28 chips total",
+    columns=["processor", "count", "date", "designer", "engraving_scale", "area", "density"],
+)
+cpus = cpus[["date", "count", "designer", "engraving_scale", "processor"]].iloc[:-1]
+
+gpus = hpccourse.get_table_from_wiki(
+    wpage="Transistor_count",
+    in_table="Voodoo Graphics",
+    columns=[
+        "processor",
+        "count",
+        "date",
+        "designer",
+        "manufacturer",
+        "engraving_scale",
+        "area",
+        "density",
+        "ref",
+        "dummy",
+    ],
+)
+gpus = gpus[["date", "count", "designer", "engraving_scale", "processor"]].iloc[:-1]
+trans = pd.concat([cpus.assign(ptype="cpu"),gpus.assign(ptype="gpu")],axis=0)
+trans["date"] = gpus["date"].str.replace("March", "").str.replace("November","").str.split("[").str[0]
+trans["count"] = gpus["count"].str.replace(",","").str.replace(" ","").str.replace("Unknow","NaN").str.replace("NaNn","NaN").str.replace("+","").str.split("[").str[0]
+trans["count"] = trans["count"].astype(float)
+trans["date"] = trans["date"].astype(float)
+
+plt.scatter(trans["date"],np.log(trans["count"]))
+plt.grid()
+plt.show()
+
+#########################################
+Answer from ltrias at 2022-11-10 08:42:20
+#########################################
+cpus = hpccourse.get_table_from_wiki(
+    wpage="Transistor_count",
+    in_table="20-bit, 6-chip, 28 chips total",
+    columns=["processor", "count", "date", "designer", "engraving_scale", "area", "density"],
+)
+cpus = cpus[["date", "count", "designer", "engraving_scale", "processor"]].iloc[:-1]
+
+gpus = hpccourse.get_table_from_wiki(
+    wpage="Transistor_count",
+    in_table="Voodoo Graphics",
+    columns=[
+        "processor",
+        "count",
+        "date",
+        "designer",
+        "manufacturer",
+        "engraving_scale",
+        "area",
+        "density",
+        "ref",
+        "dummy",
+    ],
+)
+gpus = gpus[["date", "count", "designer", "engraving_scale", "processor"]].iloc[:-1]
+trans=pd.concat([cpus.assign(ptype="cpus"),gpus.assign(ptype="gpus")],axis=0)
+
+trans["date"]=trans["date"].str.split('[').str[0]
+trans["count"]=trans["count"].str.split('(').str[0]
+trans["count"]=trans["count"].str.split(' ').str[0]
+trans["count"]=trans["count"].str.split('[').str[0]
+
+trans["date"]=trans["date"].str.replace("March ","").str.replace("November ","")
+trans["count"]=trans["count"].str.replace(",","").str.replace("+","")
+
+trans["count"]=pd.to_numeric(trans["count"], errors='coerce')
+
+
+
+trans["date"].astype(int)
+trans["count"].astype(float)
+
+trans
+
+trans["lcount"]=np.log2(trans["count"])
+
+ax = trans.loc[(trans["ptype"]=="cpus")].set_index("date")["lcount"].plot(linestyle = 'none',marker='o',logy=True)
+ax = trans.loc[(trans["ptype"]=="gpus")].set_index("date")["lcount"].plot(linestyle = 'none',marker='+',logy=True)
+plt.yscal('log')
+
+##########################################
+Answer from rgardon at 2022-11-10 08:51:29
+##########################################
+cpus = hpccourse.get_table_from_wiki(
+    wpage="Transistor_count",
+    in_table="20-bit, 6-chip, 28 chips total",
+    columns=["processor", "count", "date", "designer", "engraving_scale", "area", "density"],
+)
+cpus = cpus[["date", "count", "designer", "engraving_scale", "processor"]].iloc[:-1]
+
+gpus = hpccourse.get_table_from_wiki(
+    wpage="Transistor_count",
+    in_table="Voodoo Graphics",
+    columns=[
+        "processor",
+        "count",
+        "date",
+        "designer",
+        "manufacturer",
+        "engraving_scale",
+        "area",
+        "density",
+        "ref",
+        "dummy",
+    ],
+)
+gpus = gpus[["date", "count", "designer", "engraving_scale", "processor"]].iloc[:-1]
+
+trans = pd.concat([cpus.assign(ptype="cpu"), gpus.assign(ptype="gpu")], axis=0)
+trans["date"] = trans["date"].str.replace("March ", "").str.replace("November ", "")
+trans["date"] = trans["date"].str.replace("March ", "").str.replace("November ", "")
+trans["date"] = trans["date"].str.split('[').str[0].astype(int)
+
+trans["count"] = trans["count"].str.replace(",", "")
+trans["count"] = trans["count"].str.split('[').str[0]
+trans["count"] = trans["count"].str.split('+').str[0]
+trans["count"] = trans["count"].str.split(' ').str[0]
+trans["count"] = pd.to_numeric(trans["count"], errors='coerce')
+
+trans["engraving_scale"] = trans["engraving_scale"].str.split('[').str[0]
+trans["engraving_scale"] = trans["engraving_scale"].str.replace(",", "")
+trans["engraving_scale"] = trans["engraving_scale"].str.split('(').str[0]
+trans["engraving_scale"] = trans["engraving_scale"].str.replace("\xa0nm", "")
+trans["engraving_scale"] = trans["engraving_scale"].str.replace("nm", "")
+trans["engraving_scale"] = pd.to_numeric(trans["engraving_scale"], errors='coerce')
+
+trans
+
+l=[3, 4, 6, 8, 15, 23, 50, 80, 150, 300, 500, 800, 1000, 3000, 5000, 10000]
+trans['engraving_scale2'] = pd.cut(trans["engraving_scale"], bins=l, include_lowest=True)
+trans['engraving_scale3'] = trans['engraving_scale2'].map(dict(zip(trans['engraving_scale2'].unique(), range(len(trans['engraving_scale2'].unique())))))
+trans['engraving_scale3'] = trans['engraving_scale3'].fillna(1).astype(float)
+
+
+fig, ax = plt.subplots(1, 1, figsize=(15, 10))
+sns.scatterplot(data=trans, x="date", y="count", hue="engraving_scale2", style="ptype", ax=ax, s=200)
+plt.grid(True)
+plt.yscale("log")
+x = np.arange(51)
+y = np.exp((23+x)/3.)
+ax.plot(x + 1972, y, c="grey", lw=8, alpha=0.5)
+
+ax.set_ylabel("Transistors count")
+

@@ -1,0 +1,108 @@
+###########################################
+Answer from A Paddeu at 2022-11-10 07:44:57
+###########################################
+#prendre flop 32
+clock_rate = 1.3
+flops_per_cycle_per_core = 2
+cores = 768
+print(f"FLOP/S(Pascal GPU )={clock_rate*flops_per_cycle_per_core*cores} GFLOP/S. In line with previous value")
+
+#########################################
+Answer from AGohar at 2022-11-10 07:49:32
+#########################################
+clock_rate = 1.3
+flops_per_cycle_per_core = 2
+cores = 768
+print(f"FLOP/S(Pascal GPU)={clock_rate*flops_per_cycle_per_core*cores:.0f} GFLOP/S. In line with previous value")
+
+#############################################
+Answer from CDuquesnoy at 2022-11-10 07:46:02
+#############################################
+
+clock_rate_pascal = 1.3
+cores_pascal = 768
+flops_per_core_pascal = 2 #Source Wikipédia 
+
+print(f"FLOP/S(Xeon W3520)={clock_rate_pascal*flops_per_core_pascal*cores_pascal:.2f} GFLOP/S. In line with previous value")
+
+##########################################
+Answer from Gastier at 2022-11-10 07:44:31
+##########################################
+clock_rate = 1.3
+flops_per_cycle_per_core = 2
+cores = 768
+print(f"FLOP/S(Pascal GPU)={clock_rate*flops_per_cycle_per_core*cores} GFLOP/S. In line with previous value")
+
+########################################
+Answer from Ilyas at 2022-11-09 14:26:04
+########################################
+
+clock_rate = 1.3
+flops_per_cycle_per_core = 2
+cores = 768
+print(f"FLOP/S(Pascal)={clock_rate*flops_per_cycle_per_core*cores} GFLOP/S. In line with previous value")
+
+#######################################
+Answer from Loic at 2022-11-10 07:46:05
+#######################################
+clock_rate = 1.3
+flops_per_cycle_per_core = 2
+cores = 768
+print(f"FLOP/S(Pascal )={clock_rate*flops_per_cycle_per_core*cores} GFLOP/S")
+
+########################################
+Answer from cseka at 2022-11-10 08:07:13
+########################################
+clock_rate = 1.3
+flops_per_cycle_per_core = 2
+cores = 768
+print(f"FLOP/S(Pascal GPU )={clock_rate*flops_per_cycle_per_core*cores} GFLOP/S.")
+
+##########################################
+Answer from csuffys at 2022-11-10 07:47:20
+##########################################
+lock_rate = 1.3
+cores = 768
+flops_per_cycle_32 = 2
+print(f"FLOP/S={clock_rate*flops_per_cycle_32*cores} FLOP/S sur F32.")
+
+##########################################
+Answer from gtherin at 2022-11-10 07:57:27
+##########################################
+clock_rate = 1.3
+flops_per_cycle_per_core = 2
+cores = 768
+print(f"FLOP/S(Pascal GPU)={clock_rate*flops_per_cycle_per_core*cores:.0f} GFLOP/S. In line with previous value")
+
+############################################
+Answer from jclacoffe at 2022-11-10 07:46:22
+############################################
+print("FLOPS =", 1.3*768*2  , "in Giga")  
+
+#########################################
+Answer from ltrias at 2022-11-10 07:40:09
+#########################################
+clock_rate = 1.3
+flops_per_cycle_per_core = 2
+cores = 768
+print(f"FLOP/S(Kaby)={clock_rate*flops_per_cycle_per_core*cores} GFLOP/S. In line with previous value")
+
+############################################
+Answer from plelievre at 2022-11-10 07:49:07
+############################################
+TOTAL_FLOPS = 1.3 * 2 * 768
+# 1.3 = clock rate
+# 2 = flops per cycle per core (in the table)
+# 768 = cores
+print("Total Flops :", TOTAL_FLOPS)
+
+##########################################
+Answer from rgardon at 2022-11-10 07:48:50
+##########################################
+
+clock_rate = 1.3
+flops_per_cycle_per_core = 2
+cores = 768
+
+print(f"FLOP/S(Pascal GPU)={clock_rate*flops_per_cycle_per_core*cores} GFLOP/S. In line with previous value")
+
