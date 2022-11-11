@@ -43,5 +43,6 @@ setup.py
 safe.py
 abc.py
 hpccourse/exercices/*
+hpccourse/corrections/*
 hpccourse/correction.py
 corrections/*
