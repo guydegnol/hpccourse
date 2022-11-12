@@ -1,4 +1,4 @@
-__version__ = "1.6.2"
+__version__ = "1.6.3"
 
 from .block import Block  # noqa
 from .blockchain import BlockChain  # noqa
@@ -6,6 +6,7 @@ from .evaluation import Evaluation, set_up_student  # noqa
 from .flops import *  # noqa
 from .languages import get_languages_perf  # noqa
 from .pycker import *  # noqa
+from .git_galaxy import *  # noqa
 
 
 def load_extra_magics(ip, verbose=True):
