@@ -77,8 +77,6 @@ class FLOPS:
         for table in my_tables:
             if "wikitable floatright" in str(table):
                 self.units = pd.DataFrame(pd.read_html(str(table))[0])
-            elif "Microarchitecture" in str(table):
-                microarchitecture = table
             else:
                 # convert list to dataframe
                 costs = pd.DataFrame(pd.read_html(str(table))[0])

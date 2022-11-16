@@ -22,16 +22,15 @@ This package is a support library for the course on High Performance Programming
 08 Introduction to git (notebook)
 
 # 4/5 (4h): Dec-01/08:30
-09 Languages performances: from assembly to python (notebook)
+09 Languages performances
 10 Parallel architecture (slides)
 11 Multiprocessing (notebook)
 12 Multithreading (notebook)
 
 # 5/5 (4h): Dec-07/13:30
-13 Pi calculation
-14 Mandelbrot
+13 Mandelbrot
+14 Cryptocurrencies
 15 Matrix multiplication
-16 Cryptocurrencies
 
 Ideas
    Convergence time
