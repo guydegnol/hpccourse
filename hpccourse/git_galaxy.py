@@ -15,7 +15,7 @@ def get_git_galaxy_log_graph(nodenum):
     digraph = graphviz.Digraph(engine="neato")
     digraph.graph_attr["rankdir"] = "LR"
 
-    colors = {"master": "#00B200", "casting": "#0081FF", "bernard_pivot": "#FF8F00"}
+    colors = {"master": "#F67280", "casting": "#355C7D", "bernard_pivot": "#6C5B7B"}
 
     digraph.node(
         "master", fontsize="20", pos="0,-0.5!", fontcolor=colors["master"], shape="none", fontname="Comic Sans MS"
@@ -59,5 +59,3 @@ def get_git_galaxy_log_graph(nodenum):
     }
 
     return digraph
-
-

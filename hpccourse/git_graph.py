@@ -8,12 +8,12 @@ def get_nodes(name):
         return Nodes(
             [
                 Node(label="1", branch="master", pos=0, destination="2", style="<"),
-                Node(label="2", branch="master", pos=1.1, destination="3", style="<"),
-                Node(label="3", branch="master", pos=3, destination="4", style=">"),
-                Node(label="4", branch="master", pos=4, style=">,dashed,purple"),
                 Node(label="A", branch="casting", pos=1, destination="B", origin="1"),
+                Node(label="2", branch="master", pos=1.1, destination="3", style="<"),
                 Node(label="B", branch="casting", pos=2, destination="3"),
                 Node(label="Z", branch="bernard_pivot", pos=2.6, destination="4", origin="2"),
+                Node(label="3", branch="master", pos=3, destination="4", style=">"),
+                Node(label="4", branch="master", pos=4, style=">,dashed,purple"),
             ]
         )
     if name == "premerge":
@@ -50,7 +50,7 @@ def get_nodes(name):
         )
 
 
-def get_git_graph(nodes, branches=None, cpos=None, title=None):
+def get_git_graph(nodes, branches=None, cpos=None, title=None, active=None):
 
     if type(nodes) == str:
         nodes = get_nodes(nodes)
@@ -73,16 +73,25 @@ def get_git_graph(nodes, branches=None, cpos=None, title=None):
     if title:
         digraph.graph_attr["labelloc"] = "t"
         digraph.graph_attr["label"] = title
+        digraph.graph_attr["fontsize"] = "30"
+        digraph.graph_attr["fontcolor"] = "#F67280"
+        digraph.graph_attr["fontname"] = "Comic Sans MS"
 
+    dstyle = "enable"
     for n in nodes.nodes:
         b = branches[n.branch]
         b.title(n, digraph)
 
-        digraph.node(n.label, **nodes.get_node_style(n, b, cpos))
+        if dstyle == "highlight":
+            dstyle = "disable"
+        if active and n.label == active:
+            dstyle = "highlight"
+
+        digraph.node(n.label, **nodes.get_node_style(n, b, dstyle))
         if n.origin:
-            digraph.edge(n.origin, n.label, **nodes.get_edge_style(n.label, n.origin, cpos))
+            digraph.edge(n.origin, n.label, **nodes.get_edge_style(n.label, n.origin, active))
         if n.destination:
-            digraph.edge(n.label, n.destination, **nodes.get_edge_style(n.label, n.destination, cpos))
+            digraph.edge(n.label, n.destination, **nodes.get_edge_style(n.label, n.destination, active))
 
     digraph.render()
     return digraph

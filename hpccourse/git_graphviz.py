@@ -56,7 +56,7 @@ class Nodes:
 
         return args
 
-    def get_node_style(self, node, branch, cpos):
+    def get_node_style(self, node, branch, dstyle):
         if "purple" in node.style:
             color = "#C06C84"  # 6C5B7B F8B195 C06C84
         elif node.label in "123456789" or "red" in node.style:
@@ -78,8 +78,10 @@ class Nodes:
         )
         if "point" in node.style:
             args = dict(fontcolor="white", shape="point", color="grey", pos=pos)
-        if cpos and node.pos >= cpos:
+        if dstyle == "disable":
             args.update(dict(fontcolor="#E3E3E3", color="#E3E3E3", fillcolor="#F9F9F9"))
+        if dstyle == "highlight":
+            args.update(dict(fontcolor="yellow", color="yellow", fillcolor="red", fontsize="20"))
         return args
 
 
