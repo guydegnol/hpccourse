@@ -16,6 +16,37 @@ def get_nodes(name):
                 Node(label="4", branch="master", pos=4, style=">,dashed,purple"),
             ]
         )
+
+
+    if name == "dgalaxy":
+        return Nodes(
+        [
+            Node(label="boris", branch="master", pos=0, destination="Je m'appelle boris", style="<"),
+            Node(label="groot", branch="casting", pos=1, destination="groot!", origin="boris"),
+            Node(label="Je m'appelle boris", branch="master", pos=2, destination="Je m'appelle groot!", style="<"),
+            Node(label="groot!", branch="casting", pos=3.5, destination="Je m'appelle groot!"),
+            Node(
+                label="Je s'appelle boris",
+                branch="bernard_pivot",
+                pos=3.5,
+                destination="Je s'appelle groot!",
+                origin="Je m'appelle boris",
+            ),
+            Node(label="Je m'appelle groot!", branch="master", pos=5, destination="Je s'appelle groot!", style=">"),
+            Node(label="Je s'appelle groot!", branch="master", pos=7, style=">,dashed,purple"),
+        ],
+        shape="rectangle")
+        changes = [
+        ["master", "0,0!", "boris", [2, 1]],  # 0
+        ["casting", "1,1!", "groot", [3]],  # 1
+        ["master", "2.5,0!", "Je m'appelle boris", [4, 5]],  # 2
+        ["casting", "3.8,1!", "groot!", [5]],  # 3
+        ["bernard_pivot", "3.4,-1!", "Je s'appelle boris", [6]],  # 4
+        ["master", "5.,0!", "Je m'appelle groot!", [6]],  # 5
+        ["master", "7,0!", "Je s'appelle groot!", []],  # 6
+    ]
+
+
     if name == "premerge":
         return Nodes(
             [
@@ -50,7 +81,7 @@ def get_nodes(name):
         )
 
 
-def get_git_graph(nodes, branches=None, cpos=None, title=None, active=None):
+def get_git_graph(nodes, branches=None, title=None, active=None):
 
     if type(nodes) == str:
         nodes = get_nodes(nodes)

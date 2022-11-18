@@ -14,8 +14,9 @@ class Node:
 
 
 class Nodes:
-    def __init__(self, nodes):
+    def __init__(self, nodes, shape="circle"):
         self.nodes = nodes
+        self.shape = shape
 
     def get_range(self):
         return range(len(self.nodes))
@@ -72,7 +73,7 @@ class Nodes:
             style="filled",
             fontcolor="white",
             fontname="Comic Sans MS",
-            shape="circle",
+            shape=self.shape,
             fillcolor=color,
             pos=pos,
         )
