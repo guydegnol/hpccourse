@@ -102,7 +102,7 @@ def get_git_graph(nodes, branches=None):
             "fix_bug3": Branch(color="#C06C84", pos=-2),
         }
 
-    githist.update_with_style()
+    nodes.update_with_style()
 
     digraph = graphviz.Digraph(engine="neato")
     digraph.graph_attr["rankdir"] = "LR"

@@ -7,6 +7,7 @@ from .flops import *  # noqa
 from .languages import get_languages_perf  # noqa
 from .pycker import *  # noqa
 from .git_galaxy import *  # noqa
+from .git_graph import *  # noqa
 
 
 def load_extra_magics(ip, verbose=True):
