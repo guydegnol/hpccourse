@@ -59,3 +59,5 @@ def get_git_galaxy_log_graph(nodenum):
     }
 
     return digraph
+
+
