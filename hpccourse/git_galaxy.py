@@ -34,28 +34,24 @@ def get_git_galaxy_log_graph(nodenum):
 
     for n, change in enumerate(changes):
         branch, pos, label, edge = change
-        args = dict(fontsize="10", style="filled", fontcolor="white", fontname="Comic Sans MS", shape="rectangle")
+        args = dict(
+            fontsize="10",
+            style="filled",
+            fontcolor="white",
+            fontname="Comic Sans MS",
+            shape="rectangle",
+            fillcolor=colors[branch],
+        )
 
         if n > nodenum:
-            args.update(dict(fontcolor=colors[branch]))
+            args.update(dict(fontcolor=colors[branch], fillcolor=colors[branch]))
         elif n == nodenum:
-            args.update(dict(fontsize="20", fontcolor="red", color="red"))
-        digraph.node(label, pos=pos, fillcolor=colors[branch], **args)
+            args.update(dict(fontcolor="yellow", color="yellow", fillcolor="red", fontsize="10"))
+        digraph.node(label, pos=pos, **args)
 
     for n, change in enumerate(changes):
         for e in change[3]:
-            digraph.edge(changes[n][2], changes[e][2], style="bold", color="orange")
+            digraph.edge(changes[n][2], changes[e][2], color="grey")
 
     digraph.render()
-
-    {
-        "1": ["master", 0, "1", [2, 1], ["2", "A"]],
-        "A": ["casting", 1, "A", [3], ["B"]],
-        "2": ["master", 1.1, "2", [4, 5], ["Z", "3"]],
-        "B": ["casting", 2, "B", [5], ["3"]],
-        "Z": ["bernard_pivot", 2.6, "Z", [6], ["4"]],
-        "3": ["master", 3, "3", [6], ["4"]],
-        "4": ["master", 4, "4", [], []],
-    }
-
     return digraph
