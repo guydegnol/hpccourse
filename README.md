@@ -19,29 +19,26 @@ This package is a support library for the course on High Performance Programming
 # 3/5 (4h): Nov-17/08:30
 06 GPU programming (CUDA) (slides)
 07 GPU programming (CUDA) (notebook)
-08 Introduction to git (notebook)
 
 # 4/5 (4h): Dec-01/08:30
 09 Languages performances
+08 Introduction to git (notebook)
+
+# 5/5 (4h): Dec-07/13:30
 10 Parallel architecture (slides)
 11 Multiprocessing (notebook)
 12 Multithreading (notebook)
-
-# 5/5 (4h): Dec-07/13:30
 13 Mandelbrot
 14 Cryptocurrencies
-15 Matrix multiplication
 
 Ideas
+  Matrix multiplication
    Convergence time
    Build a search algo
    https://fractalytics.io/moore-penrose-matrix-optimization-cuda-c
    https://github.com/ishanthilina/CUDA-Calculation-Experiements/tree/master/q1
    https://en.wikipedia.org/wiki/N-body_simulation
    Dask cuda
-
-Won't probably do
-  Message Passing Programming
 ```
 
 ##### Cuda extensions

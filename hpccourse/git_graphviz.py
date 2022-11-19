@@ -82,7 +82,7 @@ class Nodes:
         if dstyle == "disable":
             args.update(dict(fontcolor="#E3E3E3", color="#E3E3E3", fillcolor="#F9F9F9"))
         if dstyle == "highlight":
-            fontsize= "12" if len(node.label) > 10 else "20"
+            fontsize = "12" if len(node.label) > 10 else "20"
             args.update(dict(fontcolor="yellow", color="yellow", fillcolor="red", fontsize=fontsize))
         return args
 

@@ -46,3 +46,4 @@ hpccourse/exercices/*
 hpccourse/corrections/*
 hpccourse/correction.py
 corrections/*
+hpccourse/*.json

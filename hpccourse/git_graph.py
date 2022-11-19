@@ -13,16 +13,16 @@ def get_nodes(name):
                 Node(label="B", branch="casting", pos=2, destination="3"),
                 Node(label="Z", branch="bernard_pivot", pos=2.6, destination="4", origin="2"),
                 Node(label="3", branch="master", pos=3, destination="4", style=">"),
-                Node(label="4", branch="master", pos=4, style=">,dashed,purple"),
+                Node(label="4", branch="master", pos=4, style=">,purple"),
             ]
         )
 
     if name == "dgalaxy":
         return Nodes(
             [
-                Node(label="boris", branch="master", pos=0, destination="Je m'appelle boris", style="<"),
+                Node(label="boris", branch="master", pos=0, destination="Je m'appelle boris"),
                 Node(label="groot", branch="casting", pos=1, destination="groot!", origin="boris"),
-                Node(label="Je m'appelle boris", branch="master", pos=2, destination="Je m'appelle groot!", style="<"),
+                Node(label="Je m'appelle boris", branch="master", pos=2, destination="Je m'appelle groot!"),
                 Node(label="groot!", branch="casting", pos=4.5, destination="Je m'appelle groot!"),
                 Node(
                     label="Je s'appelle boris",
@@ -31,22 +31,11 @@ def get_nodes(name):
                     destination="Je s'appelle groot!",
                     origin="Je m'appelle boris",
                 ),
-                Node(
-                    label="Je m'appelle groot!", branch="master", pos=6, destination="Je s'appelle groot!", style=">"
-                ),
-                Node(label="Je s'appelle groot!", branch="master", pos=9, style=">,dashed,purple"),
+                Node(label="Je m'appelle groot!", branch="master", pos=6, destination="Je s'appelle groot!"),
+                Node(label="Je s'appelle groot!", branch="master", pos=9, style="purple"),
             ],
             shape="rectangle",
         )
-        changes = [
-            ["master", "0,0!", "boris", [2, 1]],  # 0
-            ["casting", "1,1!", "groot", [3]],  # 1
-            ["master", "2.5,0!", "Je m'appelle boris", [4, 5]],  # 2
-            ["casting", "3.8,1!", "groot!", [5]],  # 3
-            ["bernard_pivot", "3.4,-1!", "Je s'appelle boris", [6]],  # 4
-            ["master", "5.,0!", "Je m'appelle groot!", [6]],  # 5
-            ["master", "7,0!", "Je s'appelle groot!", []],  # 6
-        ]
 
     if name == "premerge":
         return Nodes(
