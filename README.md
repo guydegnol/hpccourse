@@ -21,8 +21,8 @@ This package is a support library for the course on High Performance Programming
 07 GPU programming (CUDA) (notebook)
 
 # 4/5 (4h): Dec-01/08:30
-09 Languages performances
 08 Introduction to git (notebook)
+09 Languages performances
 
 # 5/5 (4h): Dec-07/13:30
 10 Parallel architecture (slides)
