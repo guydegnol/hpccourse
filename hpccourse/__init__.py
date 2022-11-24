@@ -1,4 +1,4 @@
-__version__ = "1.7.4"
+__version__ = "1.7.5"
 
 from .block import Block  # noqa
 from .blockchain import BlockChain  # noqa
@@ -8,6 +8,7 @@ from .languages import get_languages_perf  # noqa
 from .pycker import *  # noqa
 from .git_graph import *  # noqa
 from .git_graphviz import *  # noqa
+from .timeit import timeit  # noqa
 
 
 def load_extra_magics(ip, verbose=True):
