@@ -22,17 +22,17 @@ This package is a support library for the course on High Performance Programming
 
 # 4/5 (4h): Dec-01/08:30
 08 Introduction to git (notebook)
-09 Languages performances
 
 # 5/5 (4h): Dec-07/13:30
+09 Languages performances (notebook)
 10 Parallel architecture (slides)
 11 Multiprocessing (notebook)
 12 Multithreading (notebook)
-13 Mandelbrot
-14 Cryptocurrencies
+13 Cryptocurrencies
 
 Ideas
-  Matrix multiplication
+   14 Mandelbrot
+   Matrix multiplication
    Convergence time
    Build a search algo
    https://fractalytics.io/moore-penrose-matrix-optimization-cuda-c
