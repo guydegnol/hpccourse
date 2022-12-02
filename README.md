@@ -26,12 +26,12 @@ This package is a support library for the course on High Performance Programming
 # 5/5 (4h): Dec-07/13:30
 09 Languages performances (notebook)
 10 Parallel architecture (slides)
-11 Multiprocessing (notebook)
-12 Multithreading (notebook)
-13 Cryptocurrencies
 
 Ideas
-   14 Mandelbrot
+   11 Multiprocessing (notebook)
+   12 Multithreading (notebook)
+   13 Cryptocurrencies (notebook)
+   14 Mandelbrot (notebook)
    Matrix multiplication
    Convergence time
    Build a search algo
