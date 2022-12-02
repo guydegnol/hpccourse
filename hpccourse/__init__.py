@@ -12,9 +12,9 @@ from .timeit import timeit  # noqa
 
 
 def load_extra_magics(ip, verbose=True):
-    from .compiler import NVCUDACPlugin
+    from .compiler import CCPPlugin
 
-    ip.register_magics(NVCUDACPlugin(ip))
+    ip.register_magics(CCPPlugin(ip))
     ip.register_magics(Evaluation(ip))
 
     if verbose:

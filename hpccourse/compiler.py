@@ -8,14 +8,13 @@ from IPython.core.magic import Magics, line_cell_magic, magics_class
 
 
 @magics_class
-class NVCUDACPlugin(Magics):
+class CCPPlugin(Magics):
     def __init__(self, shell):
-        super(NVCUDACPlugin, self).__init__(shell)
-        self.argparser = argparse.ArgumentParser(description="NVCCUDACPlugin params")
+        super(CCPPlugin, self).__init__(shell)
+        self.argparser = argparse.ArgumentParser(description="ipsa_compile_and_exec params")
         self.argparser.add_argument(
             "-t", "--timeit", action="store_true", help="flag to return timeit result instead of stdout"
         )
-
         self.argparser.add_argument("-c", "--compiler", default="nvcc", choices=["nvcc", "g++", "gcc"])
 
     def run(self, exec_file, timeit=False):
@@ -54,6 +53,7 @@ class NVCUDACPlugin(Magics):
                 # Run executable file
                 return self.run(file_path + ".out", timeit=args.timeit)
             except OSError as e:
+                print(f"Compiler {args.compiler} is probably not here.")
                 self.argparser.print_help()
                 for l in e.output.decode("utf8").split("\n"):
                     print(l)
