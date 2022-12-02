@@ -144,6 +144,7 @@ def get_arg_parser(argv):
 def dump_corrections(argv=sys.argv):
 
     args = get_arg_parser(argv[1:])
+    promo = "2022"
 
     from google.cloud import firestore
 
@@ -154,7 +155,7 @@ def dump_corrections(argv=sys.argv):
 
     docs = firestore.Client().collection(args.evaluation_id).stream()
 
-    directory = os.path.realpath(f"../course_admin/data/2022/")
+    directory = os.path.realpath(f"../course_admin/data/{promo}/")
 
     with open(f"{directory}/{args.evaluation_id}.txt", "w") as f:
         for answer in docs:
