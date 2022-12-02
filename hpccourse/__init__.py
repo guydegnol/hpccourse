@@ -1,6 +1,6 @@
-__version__ = "1.7.6"
+__version__ = "1.7.7"
 
-from .block import Block  # noqa
+from .block import Block, BlockCoin, BlockMsg  # noqa
 from .blockchain import BlockChain  # noqa
 from .evaluation import Evaluation, set_up_student  # noqa
 from .flops import *  # noqa

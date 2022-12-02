@@ -1,5 +1,3 @@
-import argparse
-import argcomplete
 import sys
 import datetime
 import os
@@ -127,6 +125,9 @@ class Evaluation(Magics):
 
 
 def get_arg_parser(argv):
+    import argparse
+    import argcomplete
+
     parser = argparse.ArgumentParser(
         description="Students evaluation",
         formatter_class=argparse.RawDescriptionHelpFormatter,
