@@ -42,16 +42,6 @@ def get_document(sid, user):
     return firestore.Client().collection(sid).document(user)
 
 
-def get_solution(sid):
-    get_document(sid, "solution").get().to_dict()
-
-
-def send_answer(sid, data):
-    get_document(sid, os.environ["STUDENT"]).set(
-        {"answer": data, "update_time": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")}
-    )
-
-
 @magics_class
 class Evaluation(Magics):
     def __init__(self, shell):
@@ -65,17 +55,19 @@ class Evaluation(Magics):
     @cell_magic
     @needs_local_scope
     def ipsa_send_answer(self, line, cell, local_ns=None):
-        send_answer(line, cell)
+
+        get_document(line, os.environ["STUDENT"]).set(
+            {"answer": cell, "update_time": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")}
+        )
 
         self.shell.run_cell(cell)
         print(f'Answer has been submited for: {line}/{os.environ["STUDENT"]}. You can resubmit it several times')
-        return None
 
     @line_cell_magic
     @needs_local_scope
     def ipsa_get_solution(self, line, cell="", local_ns=None):
 
-        output = get_solution(line)
+        output = get_document(line, "solution").get().to_dict()
 
         if output is None:
             print(f"Solution (for question {line}) is not available (yet)")
@@ -87,7 +79,6 @@ class Evaluation(Magics):
     """
             )
             self.shell.run_cell(output["answer"])
-        return None
 
 
 def get_arg_parser(argv):
