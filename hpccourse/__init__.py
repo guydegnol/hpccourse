@@ -1,4 +1,4 @@
-__version__ = "1.7.8"
+__version__ = "1.8.0"
 
 from .block import Block, BlockCoin, BlockMsg  # noqa
 from .blockchain import BlockChain  # noqa
@@ -12,7 +12,7 @@ from .timeit import timeit  # noqa
 
 
 def load_extra_magics(ip, verbose=True):
-    from .magics import NVCUDACPlugin
+    from .compiler import NVCUDACPlugin
 
     ip.register_magics(NVCUDACPlugin(ip))
     ip.register_magics(Evaluation(ip))
