@@ -47,7 +47,7 @@ class CCPPlugin(Magics):
                 if args.compiler in ["g++", "gcc"]:
                     cmd = f"/usr/bin/{args.compiler} {file_path}.c -o {file_path}.out"
                 else:
-                    cmd = f"/usr/local/cuda/bin/nvcc {file_path}.cu -o {file_path}.out -Wno-deprecated-gpu-targets"
+                    cmd = f"/usr/local/cuda/bin/nvcc {file_path}.c -o {file_path}.out -Wno-deprecated-gpu-targets"
                 subprocess.check_output(cmd.split(), stderr=subprocess.STDOUT)
 
                 # Run executable file
