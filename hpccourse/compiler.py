@@ -40,14 +40,15 @@ class CCPPlugin(Magics):
             try:
                 # Write code file in a temp file
                 file_path = os.path.join(tmp_dir, str(uuid.uuid4()))
-                with open(file_path + ".c", "w") as f:
+                file_code = file_path + (".c" if args.compiler in ["g++", "gcc"] else ".cu")
+                with open(file_code, "w") as f:
                     f.write(cell)
 
                 # Compile file
                 if args.compiler in ["g++", "gcc"]:
-                    cmd = f"/usr/bin/{args.compiler} {file_path}.c -o {file_path}.out"
+                    cmd = f"/usr/bin/{args.compiler} {file_code} -o {file_path}.out"
                 else:
-                    cmd = f"/usr/local/cuda/bin/nvcc {file_path}.c -o {file_path}.out -Wno-deprecated-gpu-targets"
+                    cmd = f"/usr/local/cuda/bin/nvcc {file_code} -o {file_path}.out -Wno-deprecated-gpu-targets"
                 subprocess.check_output(cmd.split(), stderr=subprocess.STDOUT)
 
                 # Run executable file
