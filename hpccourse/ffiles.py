@@ -1,12 +1,11 @@
-from os import makedirs
-from random import random
 import glob
+import random
 import os
 
 
 def generate_file_data():
     lines = [",".join([f"c{u}" for u in range(10)])]
-    lines += [",".join([str(random()) for _ in range(10)]) for _ in range(10_000)]
+    lines += [",".join([str(random.random()) for _ in range(10)]) for _ in range(10_000)]
     return "\n".join(lines)
 
 
@@ -14,7 +13,7 @@ def generate_random_files(nfiles=1_000, path="/content/tmp"):
     from tqdm import tqdm
 
     # create a local directory to save files
-    makedirs(path, exist_ok=True)
+    os.makedirs(path, exist_ok=True)
 
     # create all files
     for i in tqdm(range(nfiles), f"Generate {nfiles} random files"):
