@@ -5,7 +5,7 @@ import os
 
 
 def generate_file_data():
-    lines = [f"c{u}" for u in range(10)]
+    lines = [",".join([f"c{u}" for u in range(10)])]
     lines += [",".join([str(random()) for _ in range(10)]) for _ in range(10_000)]
     return "\n".join(lines)
 
