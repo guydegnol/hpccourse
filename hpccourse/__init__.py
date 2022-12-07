@@ -1,4 +1,4 @@
-__version__ = "1.8.1"
+__version__ = "1.8.2"
 
 from .block import Block, BlockCoin, BlockMsg  # noqa
 from .blockchain import BlockChain  # noqa
@@ -9,6 +9,7 @@ from .pycker import *  # noqa
 from .git_graph import *  # noqa
 from .git_graphviz import *  # noqa
 from .timeit import timeit  # noqa
+from .ffiles import *  # noqa
 
 
 def load_extra_magics(ip, verbose=True):
