@@ -11,6 +11,8 @@ import random
 
 random.seed(42)
 
+# https://dealancer.medium.com/how-to-using-bitcoin-key-pairs-to-for-encrypted-messaging-a0a980e627b1
+
 
 class BlockChain:
     public_chain = []
