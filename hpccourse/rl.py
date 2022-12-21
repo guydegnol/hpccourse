@@ -2,20 +2,21 @@ import matplotlib.pyplot as plt
 import subprocess
 import argparse
 import sys
+import numpy as np
 
 from IPython.core.magic import Magics, line_cell_magic, magics_class
 
 
 # @register_line_magic
 # def init_env(args):
-def init_env():
+def init_env(ip):
     """Use pip from the current kernel"""
     import tensorflow as tf
     from pip import main
+    import matplotlib.pyplot as plt
 
-    # main(args.split())
-    #!apt-get install -y xvfb python-opengl
-    main("install gymnasium pyvirtualdisplay gymnasium[atari,toy_text,box2d]")
+    ip.os.system("apt-get install -y xvfb python-opengl")
+    ip.os.system("pip install gymnasium pyvirtualdisplay gymnasium[atari,toy_text,box2d]")
 
     if not tf.config.list_physical_devices("GPU"):
         print("No GPU was detected. Neural nets can be very slow without a GPU.")
@@ -55,6 +56,8 @@ class RLPlugin(Magics):
 def plot_environment(env, figsize=(5, 4)):
     plt.figure(figsize=figsize)
     img = env.render()
+    if type(img) == list:
+        img = img[0]
     plt.imshow(img)
     plt.axis("off")
     return img
@@ -70,3 +73,43 @@ def save_fig(fig_id, tight_layout=True, fig_extension="png", resolution=300):
     if tight_layout:
         plt.tight_layout()
     plt.savefig(path, format=fig_extension, dpi=resolution)
+
+
+def update_scene(num, frames, patch):
+    patch.set_data(frames[num])
+    return (patch,)
+
+
+def plot_animation(frames, repeat=False, interval=40):
+    import matplotlib
+
+    fig = plt.figure()
+    patch = plt.imshow(frames[0])
+    plt.axis("off")
+    anim = matplotlib.animation.FuncAnimation(
+        fig, update_scene, fargs=(frames, patch), frames=len(frames), repeat=repeat, interval=interval
+    )
+    plt.close()
+    return anim
+
+
+def show_one_episode(policy, n_max_steps=200, seed=42):
+    import gym
+
+    frames = []
+    env = gym.make("CartPole-v1", render_mode="rgb_array")
+    np.random.seed(seed)
+    obs, info = env.reset(seed=seed)
+    for step in range(n_max_steps):
+        frames.append(env.render())
+        action = policy(obs)
+        obs, reward, done, truncated, info = env.step(action)
+        if done or truncated:
+            break
+    env.close()
+    return plot_animation(frames)
+
+
+def basic_policy(obs):
+    angle = obs[2]
+    return 0 if angle < 0 else 1
