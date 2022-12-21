@@ -7,7 +7,8 @@ from IPython.core.magic import Magics, line_cell_magic, magics_class
 
 
 # @register_line_magic
-def init_env(args):
+# def init_env(args):
+def init_env():
     """Use pip from the current kernel"""
     import tensorflow as tf
     from pip import main
@@ -22,6 +23,13 @@ def init_env(args):
             print("Go to Runtime > Change runtime and select a GPU hardware accelerator.")
         if "kaggle_secrets" in sys.modules:
             print("Go to Settings > Accelerator and select GPU.")
+
+    plt.rc("font", size=14)
+    plt.rc("axes", labelsize=14, titlesize=14)
+    plt.rc("legend", fontsize=14)
+    plt.rc("xtick", labelsize=10)
+    plt.rc("ytick", labelsize=10)
+    plt.rc("animation", html="jshtml")
 
 
 @magics_class
