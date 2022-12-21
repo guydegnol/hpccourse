@@ -94,7 +94,7 @@ def plot_animation(frames, repeat=False, interval=40):
 
 
 def show_one_episode(policy, n_max_steps=200, seed=42):
-    import gym
+    import gymnasium as gym
 
     frames = []
     env = gym.make("CartPole-v1", render_mode="rgb_array")
