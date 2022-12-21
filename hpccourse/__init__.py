@@ -10,6 +10,7 @@ from .git_graph import *  # noqa
 from .git_graphviz import *  # noqa
 from .timeit import timeit  # noqa
 from .ffiles import *  # noqa
+from . import rl
 
 
 def load_extra_magics(ip, verbose=True):
