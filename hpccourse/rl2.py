@@ -130,3 +130,13 @@ def plot(env, policy, seed=42, policy_name: str = ""):
     plot_policy(rand_rewards, policy_name)
     rand_record = record_scenario(env, policy, 100)
     return plot_animation(rand_record)
+
+
+def write_gif(records, filename: str = "record.gif"):
+    import IPython
+    import os
+    import array2gif
+
+    if not os.path.exists(filename):
+        array2gif.write_gif([np.transpose(f, axes=[2, 0, 1]) for f in records["frames"]], filename, fps=30)
+    IPython.display.Image(open(filename, "rb").read())
