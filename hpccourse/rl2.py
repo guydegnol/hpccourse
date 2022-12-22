@@ -77,3 +77,11 @@ def plot_animation(record, repeat=False, interval=40):
 
 # position, velocity, angle, angular velocity
 CPObs = collections.namedtuple("CartPole_obs", "x v theta omega")
+
+
+def make(seed=42, **kwargs):
+    import gymnasium as gym
+
+    env = gym.make(**kwargs)
+    env.reset(seed=seed)
+    return env
