@@ -4,8 +4,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import collections
 import random
-
-mpl.rc("animation", html="jshtml")
+import sys
 
 
 def record_scenario(env, policy, num_frames=100) -> dict:
@@ -140,6 +139,7 @@ def plot(env, policy, seed=42, policy_name: str = "", gif_filename=""):
         IPython.display.Image(open(gif_filename, "rb").read())
 
     return plot_animation(records)
+
 
 def runrealcmd(command, verbose=True):
     from subprocess import Popen, PIPE, STDOUT
