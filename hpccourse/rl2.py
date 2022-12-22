@@ -3,6 +3,7 @@ import matplotlib.animation as animation
 import matplotlib.pyplot as plt
 import numpy as np
 import collections
+import random
 
 mpl.rc("animation", html="jshtml")
 
@@ -79,9 +80,53 @@ def plot_animation(record, repeat=False, interval=40):
 CPObs = collections.namedtuple("CartPole_obs", "x v theta omega")
 
 
-def make(*kargs, seed=42, **kwargs):
+N_scenario = 1000
+MAX_ACTIONS = 500
+
+
+def test_policy(env, policy_func, n_scenario=N_scenario, max_actions=MAX_ACTIONS, verbose=False):
+    final_rewards = []
+    for episode in range(n_scenario):
+        if verbose and episode % 50 == 0:
+            print(episode)
+        episode_rewards = 0
+        obs, info = env.reset()  # reset to a random position
+        for step in range(max_actions):
+            action = policy_func(obs)
+            obs, reward, done, truncated, info = env.step(action)
+            episode_rewards += reward
+            if done:
+                break
+        final_rewards.append(episode_rewards)
+    return final_rewards
+
+
+def plot_policy(final_rewards, policy_name: str = ""):
+    fig = plt.plot(range(len(final_rewards)), final_rewards)
+    plt.grid()
+    # np.mean(totals), np.std(totals), min(totals), max(totals)
+    plt.title(
+        policy_name + " Mean Reward {:.2f}, Std Reward {:.2f}".format(np.mean(final_rewards), np.min(final_rewards))
+    )
+    plt.ylabel("Cum Reward")
+    plt.xlabel("Iteration")
+    plt.ylim(0, max(final_rewards) * 1.1)
+    return fig
+
+
+def make(*kargs, seed=None, **kwargs):
     import gymnasium as gym
 
     env = gym.make(*kargs, **kwargs)
-    env.reset(seed=seed)
+    if seed:
+        env.reset(seed=seed)
     return env
+
+
+def plot(env, policy, seed=42, policy_name: str = ""):
+    obs, info = env.reset(seed=seed)
+    random.seed(seed)
+    rand_rewards = test_policy(env, policy)
+    plot_policy(rand_rewards, policy_name)
+    rand_record = record_scenario(env, policy, 100)
+    plot_animation(rand_record)
