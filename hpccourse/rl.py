@@ -3,12 +3,13 @@ import sys
 import numpy as np
 
 
-def runrealcmd(command):
+def runrealcmd(command, verbose=True):
     from subprocess import Popen, PIPE, STDOUT
 
     process = Popen(command, stdout=PIPE, shell=True, stderr=STDOUT, bufsize=1, close_fds=True)
-    for line in iter(process.stdout.readline, b""):
-        print(line.rstrip().decode("utf-8"))
+    if verbose:
+        for line in iter(process.stdout.readline, b""):
+            print(line.rstrip().decode("utf-8"))
     process.stdout.close()
     process.wait()
 
@@ -17,11 +18,9 @@ def init_env(ip):
     """Use pip from the current kernel"""
     import tensorflow as tf
 
-    runrealcmd("apt-get install -y xvfb python-opengl")
-    runrealcmd("pip install gymnasium pyvirtualdisplay array2gif")
-    runrealcmd("pip install gymnasium[atari,toy_text,box2d,classic_control,accept-rom-license]")
-    #%pip install gymnasium
-    #%pip install gymnasium[classic_control,box2d,atari,accept-rom-license]
+    runrealcmd("apt-get install -y xvfb python-opengl", verbose=True)
+    runrealcmd("pip install gymnasium pyvirtualdisplay array2gif", verbose=True)
+    runrealcmd("pip install gymnasium[atari,toy_text,box2d,classic_control,accept-rom-license]", verbose=True)
 
     if not tf.config.list_physical_devices("GPU"):
         print("No GPU was detected. Neural nets can be very slow without a GPU.")
