@@ -84,14 +84,14 @@ N_scenario = 1000
 MAX_ACTIONS = 500
 
 
-def test_policy(env, policy_func, n_scenario=N_scenario, max_actions=MAX_ACTIONS, verbose=False):
+def test_policy(env, policy_func, n_scenario=500, max_actions=200, verbose=False):
     final_rewards = []
     for episode in range(n_scenario):
         if verbose and episode % 50 == 0:
             print(episode)
         episode_rewards = 0
-        obs, info = env.reset()  # reset to a random position
-        for step in range(max_actions):
+        obs, info = env.reset(seed=episode)
+        for _ in range(max_actions):
             action = policy_func(obs)
             obs, reward, done, truncated, info = env.step(action)
             episode_rewards += reward
@@ -128,7 +128,7 @@ def plot(env, policy, seed=42, policy_name: str = "", gif_filename=""):
     import os
     import array2gif
 
-    obs, info = env.reset(seed=seed)
+    env.reset(seed=seed)
     random.seed(seed)
     rewards = test_policy(env, policy)
     plot_policy(rewards, policy_name)
@@ -141,12 +141,46 @@ def plot(env, policy, seed=42, policy_name: str = "", gif_filename=""):
 
     return plot_animation(records)
 
+def runrealcmd(command, verbose=True):
+    from subprocess import Popen, PIPE, STDOUT
 
-def write_gif(records, filename: str = "record.gif"):
-    import IPython
-    import os
-    import array2gif
+    process = Popen(command, stdout=PIPE, shell=True, stderr=STDOUT, bufsize=1, close_fds=True)
+    if verbose:
+        for line in iter(process.stdout.readline, b""):
+            print(line.rstrip().decode("utf-8"))
+    process.stdout.close()
+    process.wait()
 
-    if not os.path.exists(filename):
-        array2gif.write_gif([np.transpose(f, axes=[2, 0, 1]) for f in records["frames"]], filename, fps=30)
-    IPython.display.Image(open(filename, "rb").read())
+
+def init_env(ip):
+    """Use pip from the current kernel"""
+    import tensorflow as tf
+
+    runrealcmd("apt-get install -y xvfb python-opengl", verbose=True)
+    runrealcmd("pip install gymnasium pyvirtualdisplay array2gif", verbose=True)
+    runrealcmd("pip install gymnasium[atari,toy_text,box2d,classic_control,accept-rom-license]", verbose=True)
+
+    if not tf.config.list_physical_devices("GPU"):
+        print("No GPU was detected. Neural nets can be very slow without a GPU.")
+        if "google.colab" in sys.modules:
+            print("Go to Runtime > Change runtime and select a GPU hardware accelerator.")
+        if "kaggle_secrets" in sys.modules:
+            print("Go to Settings > Accelerator and select GPU.")
+
+    plt.rc("font", size=14)
+    plt.rc("axes", labelsize=14, titlesize=14)
+    plt.rc("legend", fontsize=14)
+    plt.rc("xtick", labelsize=10)
+    plt.rc("ytick", labelsize=10)
+    plt.rc("animation", html="jshtml")
+
+
+def plot_environment(env, figsize=(5, 4)):
+    plt.figure(figsize=figsize)
+    img = env.render()
+    if type(img) == list:
+        img = img[0]
+    plt.imshow(img)
+    plt.axis("off")
+    plt.show()
+    return img
