@@ -129,4 +129,4 @@ def plot(env, policy, seed=42, policy_name: str = ""):
     rand_rewards = test_policy(env, policy)
     plot_policy(rand_rewards, policy_name)
     rand_record = record_scenario(env, policy, 100)
-    plot_animation(rand_record)
+    return plot_animation(rand_record)
