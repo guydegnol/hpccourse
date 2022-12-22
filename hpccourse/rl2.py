@@ -123,13 +123,23 @@ def make(*kargs, seed=None, **kwargs):
     return env
 
 
-def plot(env, policy, seed=42, policy_name: str = ""):
+def plot(env, policy, seed=42, policy_name: str = "", gif_filename=""):
+    import IPython
+    import os
+    import array2gif
+
     obs, info = env.reset(seed=seed)
     random.seed(seed)
-    rand_rewards = test_policy(env, policy)
-    plot_policy(rand_rewards, policy_name)
-    rand_record = record_scenario(env, policy, 100)
-    return plot_animation(rand_record)
+    rewards = test_policy(env, policy)
+    plot_policy(rewards, policy_name)
+    records = record_scenario(env, policy, 100)
+
+    if gif_filename != "":
+        if not os.path.exists(gif_filename):
+            array2gif.write_gif([np.transpose(f, axes=[2, 0, 1]) for f in records["frames"]], gif_filename, fps=30)
+        IPython.display.Image(open(gif_filename, "rb").read())
+
+    return plot_animation(records)
 
 
 def write_gif(records, filename: str = "record.gif"):
