@@ -11,7 +11,6 @@ from .git_graphviz import *  # noqa
 from .timeit import timeit  # noqa
 from .ffiles import *  # noqa
 from . import rl
-from . import rl2
 
 
 def load_extra_magics(ip, verbose=True):
