@@ -14,7 +14,7 @@ def record_scenario(env, policy, num_frames=100) -> dict:
     rewards = np.empty((num_frames,))
     dones = np.empty((num_frames,), dtype=int)
     first_done_info = ""
-    obs, info = env.reset()  # initial observation
+    obs, info = env.reset()
     for i in range(num_frames):
         action = policy(obs)
         obs, reward, done, truncated, info = env.step(action)
@@ -85,6 +85,7 @@ MAX_ACTIONS = 500
 
 def test_policy(env, policy_func, n_scenario=500, max_actions=200, verbose=False):
     final_rewards = []
+    final_grads = []
     for episode in range(n_scenario):
         if verbose and episode % 50 == 0:
             print(episode)
@@ -92,11 +93,14 @@ def test_policy(env, policy_func, n_scenario=500, max_actions=200, verbose=False
         obs, info = env.reset(seed=episode)
         for _ in range(max_actions):
             action = policy_func(obs)
+            # obs, reward, done, truncated, grads = play_one_step(env, obs, model, loss_fn)
             obs, reward, done, truncated, info = env.step(action)
+
             episode_rewards += reward
             if done:
                 break
         final_rewards.append(episode_rewards)
+        # final_grads.append(episode_rewards)
     return final_rewards
 
 
